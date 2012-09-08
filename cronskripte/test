@@ -1,0 +1,238 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>Podatki samodejnih postaj</title>
+  <link rel="stylesheet" type="text/css" href="/stil/ogrodje.css" />
+  <link rel="stylesheet" type="text/css" href="/stil/stran.css" />
+  <link rel="icon" type="image/gif" href="/stil/znak.gif" />
+
+</head>
+
+<body>
+    <div id="meniz">
+    <a class="domov" href="/">&nbsp;</a>
+    <div id="meniz-l">
+      <p><a href="/en/">English</a></p>
+      <p><select onchange="window.location.href = options[selectedIndex].value;">
+        <option value="" selected="selected">Državne ustanove</option>
+        <option value="">------------------</option>
+        <option value="http://www.kpv.gov.si">Predsednik vlade</option>
+        <option value="http://www.vlada.si/">Vlada RS</option>
+        <option value="http://www.vlada.si/si/o_vladi/kdo_je_kdo/ministrstva/">Ministrstva</option>
+        <option value="http://www.up-rs.si/">Predsednik RS</option>
+        <option value="http://www.dz-rs.si/">Državni zbor</option>
+        <option value="http://www.ds-rs.si/">Državni svet</option>
+        <option value="http://www.us-rs.si/">Ustavno sodišče</option>
+        <option value="http://www.sodisce.si/">Vrhovno sodišče</option>
+        <option value="http://www.rs-rs.si/">Računsko sodišče</option>
+        <option value="http://www.varuh-rs.si/">Varuh človekovih pravic</option>
+        <option value="http://www.ip-rs.si">Informacijski pooblaščenec</option>
+        <option value="http://e-uprava.gov.si/e-uprava/">e-uprava</option>
+        <option value="http://upravneenote.gov.si/">Portal upravnih enot</option>
+      </select></p>
+      <p>
+        <a href="/o%20agenciji/">O agenciji</a>
+      </p>
+      <p>&nbsp;</p>
+      <p>&nbsp;</p>
+      <!-- iskalnik -->
+      <form method="get" action="http://iskalnik.gov.si/gov/gov_slo.cgi" accept-charset="ISO-8859-2">
+      <div>
+          <input type="text" name="q" size="16" />
+          <input type="submit" name="sa" value="išči" class="submit" />
+      </div>
+      </form>
+      <!-- /iskalnik -->
+    </div>
+  </div>
+
+  <!-- meni 1 -->
+  <table id="meni1">
+    <tr>
+      <td class="domov">
+        <a href="/">&nbsp;</a>
+      </td>
+      <td class="izbran"><a href="/vreme/">vreme</a></td><td class="child2"><a href="/vode/">vode</a></td><td class="child3"><a href="/varstvo%20okolja/">varstvo okolja</a></td><td class="child4"><a href="/narava/">narava</a></td><td class="child5"><a href="/podnebne%20spremembe/">podnebne spremembe</a></td><td class="child6"><a href="/potresi/">potresi</a></td><td class="child7"><a href="/zrak/">zrak</a></td>
+    </tr>
+  </table>
+  <!-- /meni 1 -->
+  
+  <div id="lokacija">
+    <a href="/">ARSO</a> &gt; <a href="/vreme/">vreme</a> &gt; <a href="/vreme/napovedi%20in%20podatki/">napovedi in podatki</a>
+  </div>
+  
+  <table id="glavna">
+    <tr>
+      <td class="meni2">
+        <div class="zadeva">
+	  <!--a href="/vreme/" id="nivo1">Vreme</a -->
+        </div>
+        <!-- meni 2 -->
+        <div id="meni2">
+          <div><a href="/vreme/opozorila/">Opozorila</a></div><div class="izbran"><a href="/vreme/napovedi%20in%20podatki/">Napovedi in podatki</a></div><div class="nivo2"></div><div><a href="/vreme/o%20meritvah/">O meritvah</a></div><div><a href="/vreme/podnebje/">Podnebje</a></div><div><a href="/vreme/agrometeorologija/">Agrometeorologija</a></div><div><a href="/vreme/poro%c4%8dila%20in%20projekti/">Poročila in projekti</a></div><div><a href="/vreme/zanimivosti/">Zanimivosti</a></div><div><a href="/vreme/vpra%c5%a1anja%20in%20odgovori/">Vprašanja in odgovori</a></div><div><a href="/vreme/povezave/">Povezave</a></div>
+        </div>
+        <!-- /meni 2 -->
+      </td>
+      <td class="vsebina">
+        <div id="opozorila" class="vsebina"><div class="zadeva">opozorila</div><div style="background-image: url('/stil/opozorila/vreme_s.png');"><a href="/vreme/opozorila/">Visoke temperature</a></div><div style="background-image: url('/stil/opozorila/vreme_s.png');"><a href="/vreme/opozorila/">Velika nevarnost požarov v naravi</a></div></div>
+        <div class="zadeva">Vreme</div>
+        
+<script type="text/javascript"
+src="http://www.arso.gov.si/libs/jquery/jquery-1.3.2.min.js"></script> 
+
+<script type="text/javascript">
+
+function metri (index){
+        return $("table td.mps").get(index).innerHTML + " m/s";
+}
+
+$(document).ready(function(){
+        $("table td.kmh").attr("title",metri);
+        $("table td.mps").remove();
+});
+</script>
+
+
+<h1>Podatki samodejnih postaj</h1>
+
+<p class="datum">Četrtek, 23. avgusta 2012, med 12:00 in 12:30</p>
+<table class="online">
+	<tr><th class="onlinezgoraj">Samodejna merilna postaja</th><th class="onlinezgoraj">Temperatura</th><th class="onlinezgoraj">Vlažnost</th><th colspan="3" class="onlinezgoraj">Veter</th><th class="onlinezgoraj">Zračni tlak</th><th class="onlinezgoraj">Padavine</th><th class="onlinezgoraj">Sevanje</th></tr>
+	<tr><th class="onlinezgoraj2">&nbsp;</th><th class="onlinezgoraj2">°C</th><th class="onlinezgoraj2">%</th><th class="onlinezgoraj2">smer</th><th class="onlinezgoraj2">hitrost km/h</th><th class="onlinezgoraj2">sunki km/h</th><th class="onlinezgoraj2">hPa</th><th class="onlinezgoraj2">mm</th><th class="onlinezgoraj2">W/m²</th></tr>
+	<tr><td class="onlineimena">Bilje Nova Gorica</td><td class="onlinedesno">30</td><td class="onlinedesno">45</td><td class="onlinedesno">S</td><td class="onlinedesno mps">2.4</td><td class="onlinedesno kmh">9</td><td class="onlinedesno mps">4.3</td><td class="onlinedesno kmh">15</td><td class="onlinedesno">1015</td><td class="onlinedesno">0.0</td><td class="onlinedesno">654</td></tr>
+	<tr><td class="onlineimena">Bohinjska Češnjica</td><td class="onlinedesno">24</td><td class="onlinedesno">68</td><td class="onlinedesno">&nbsp;</td><td class="onlinedesno mps">&nbsp;</td><td class="onlinedesno kmh">&nbsp;</td><td class="onlinedesno mps">&nbsp;</td><td class="onlinedesno kmh">&nbsp;</td><td class="onlinedesno">&nbsp;</td><td class="onlinedesno">&nbsp;</td><td class="onlinedesno">&nbsp;</td></tr>
+	<tr><td class="onlineimena">Bovec</td><td class="onlinedesno">26</td><td class="onlinedesno">58</td><td class="onlinedesno">JV</td><td class="onlinedesno mps">0.7</td><td class="onlinedesno kmh">3</td><td class="onlinedesno mps">2.5</td><td class="onlinedesno kmh">9</td><td class="onlinedesno">1016</td><td class="onlinedesno">0.0</td><td class="onlinedesno">753</td></tr>
+	<tr><td class="onlineimena">Boršt Gorenja vas</td><td class="onlinedesno">20</td><td class="onlinedesno">92</td><td class="onlinedesno">SZ</td><td class="onlinedesno mps">0.7</td><td class="onlinedesno kmh">3</td><td class="onlinedesno mps">2.1</td><td class="onlinedesno kmh">8</td><td class="onlinedesno">1017</td><td class="onlinedesno">0.0</td><td class="onlinedesno">317</td></tr>
+	<tr><td class="onlineimena">Celje</td><td class="onlinedesno">23</td><td class="onlinedesno">78</td><td class="onlinedesno">JZ</td><td class="onlinedesno mps">1.9</td><td class="onlinedesno kmh">7</td><td class="onlinedesno mps">5.1</td><td class="onlinedesno kmh">18</td><td class="onlinedesno">1017</td><td class="onlinedesno">0.0</td><td class="onlinedesno">803</td></tr>
+	<tr><td class="onlineimena">Dobliče Črnomelj</td><td class="onlinedesno">32</td><td class="onlinedesno">32</td><td class="onlinedesno">SV</td><td class="onlinedesno mps">2.3</td><td class="onlinedesno kmh">8</td><td class="onlinedesno mps">5.4</td><td class="onlinedesno kmh">19</td><td class="onlinedesno">1015</td><td class="onlinedesno">0.0</td><td class="onlinedesno">798</td></tr>
+	<tr><td class="onlineimena">Dolenje Ajdovščina</td><td class="onlinedesno">32</td><td class="onlinedesno">36</td><td class="onlinedesno">S</td><td class="onlinedesno mps">0.5</td><td class="onlinedesno kmh">2</td><td class="onlinedesno mps">2.3</td><td class="onlinedesno kmh">8</td><td class="onlinedesno">&nbsp;</td><td class="onlinedesno">0.0</td><td class="onlinedesno">&nbsp;</td></tr>
+	<tr><td class="onlineimena">Hrastnik</td><td class="onlinedesno">22</td><td class="onlinedesno">84</td><td class="onlinedesno">JV</td><td class="onlinedesno mps">0.3</td><td class="onlinedesno kmh">1</td><td class="onlinedesno mps">2.5</td><td class="onlinedesno kmh">9</td><td class="onlinedesno">1017</td><td class="onlinedesno">0.0</td><td class="onlinedesno">623</td></tr>
+	<tr><td class="onlineimena">Idrija</td><td class="onlinedesno">20</td><td class="onlinedesno">93</td><td class="onlinedesno">&nbsp;</td><td class="onlinedesno mps">&nbsp;</td><td class="onlinedesno kmh">&nbsp;</td><td class="onlinedesno mps">&nbsp;</td><td class="onlinedesno kmh">&nbsp;</td><td class="onlinedesno">&nbsp;</td><td class="onlinedesno">&nbsp;</td><td class="onlinedesno">&nbsp;</td></tr>
+	<tr><td class="onlineimena">Ilirska Bistrica</td><td class="onlinedesno">33</td><td class="onlinedesno">24</td><td class="onlinedesno">J</td><td class="onlinedesno mps">2.5</td><td class="onlinedesno kmh">9</td><td class="onlinedesno mps">9.1</td><td class="onlinedesno kmh">33</td><td class="onlinedesno">&nbsp;</td><td class="onlinedesno">0.0</td><td class="onlinedesno">789</td></tr>
+	<tr><td class="onlineimena">Koper Kapitanija</td><td class="onlinedesno">35</td><td class="onlinedesno">22</td><td class="onlinedesno">SV</td><td class="onlinedesno mps">1.2</td><td class="onlinedesno kmh">4</td><td class="onlinedesno mps">5.0</td><td class="onlinedesno kmh">18</td><td class="onlinedesno">1014</td><td class="onlinedesno">&nbsp;</td><td class="onlinedesno">812</td></tr>
+	<tr><td class="onlineimena">Luka Koper</td><td class="onlinedesno">38</td><td class="onlinedesno">23</td><td class="onlinedesno">V</td><td class="onlinedesno mps">0.9</td><td class="onlinedesno kmh">3</td><td class="onlinedesno mps">5.5</td><td class="onlinedesno kmh">20</td><td class="onlinedesno">&nbsp;</td><td class="onlinedesno">0.0</td><td class="onlinedesno">&nbsp;</td></tr>
+	<tr><td class="onlineimena">Kraj. park Goričko</td><td class="onlinedesno">22</td><td class="onlinedesno">76</td><td class="onlinedesno">J</td><td class="onlinedesno mps">2.8</td><td class="onlinedesno kmh">10</td><td class="onlinedesno mps">6.3</td><td class="onlinedesno kmh">23</td><td class="onlinedesno">&nbsp;</td><td class="onlinedesno">0.0</td><td class="onlinedesno">355</td></tr>
+	<tr><td class="onlineimena">Krško</td><td class="onlinedesno">29</td><td class="onlinedesno">36</td><td class="onlinedesno">SZ</td><td class="onlinedesno mps">1.0</td><td class="onlinedesno kmh">4</td><td class="onlinedesno mps">4.5</td><td class="onlinedesno kmh">16</td><td class="onlinedesno">1015</td><td class="onlinedesno">0.0</td><td class="onlinedesno">478</td></tr>
+	<tr><td class="onlineimena">Lendava</td><td class="onlinedesno">27</td><td class="onlinedesno">56</td><td class="onlinedesno">SV</td><td class="onlinedesno mps">1.6</td><td class="onlinedesno kmh">6</td><td class="onlinedesno mps">4.9</td><td class="onlinedesno kmh">18</td><td class="onlinedesno">1016</td><td class="onlinedesno">0.0</td><td class="onlinedesno">150</td></tr>
+	<tr><td class="onlineimena">Let. J. Pučnika Lj.</td><td class="onlinedesno">22</td><td class="onlinedesno">84</td><td class="onlinedesno">JZ</td><td class="onlinedesno mps">1.1</td><td class="onlinedesno kmh">4</td><td class="onlinedesno mps">4.2</td><td class="onlinedesno kmh">15</td><td class="onlinedesno">1017</td><td class="onlinedesno">0.0</td><td class="onlinedesno">759</td></tr>
+	<tr><td class="onlineimena">Letališče Cerklje ob Krki</td><td class="onlinedesno">30</td><td class="onlinedesno">41</td><td class="onlinedesno">Z</td><td class="onlinedesno mps">1.8</td><td class="onlinedesno kmh">6</td><td class="onlinedesno mps">5.3</td><td class="onlinedesno kmh">19</td><td class="onlinedesno">1015</td><td class="onlinedesno">0.0</td><td class="onlinedesno">&nbsp;</td></tr>
+	<tr><td class="onlineimena">Letališče Lesce</td><td class="onlinedesno">24</td><td class="onlinedesno">69</td><td class="onlinedesno">Z</td><td class="onlinedesno mps">1.1</td><td class="onlinedesno kmh">4</td><td class="onlinedesno mps">3.8</td><td class="onlinedesno kmh">14</td><td class="onlinedesno">1016</td><td class="onlinedesno">0.0</td><td class="onlinedesno">789</td></tr>
+	<tr><td class="onlineimena">Let. E. Rusjana Maribor</td><td class="onlinedesno">21</td><td class="onlinedesno">84</td><td class="onlinedesno">J</td><td class="onlinedesno mps">1.1</td><td class="onlinedesno kmh">4</td><td class="onlinedesno mps">5.7</td><td class="onlinedesno kmh">21</td><td class="onlinedesno">1016</td><td class="onlinedesno">0.0</td><td class="onlinedesno">235</td></tr>
+	<tr><td class="onlineimena">Letališče Portorož</td><td class="onlinedesno">36</td><td class="onlinedesno">21</td><td class="onlinedesno">JV</td><td class="onlinedesno mps">3.2</td><td class="onlinedesno kmh">12</td><td class="onlinedesno mps">8.1</td><td class="onlinedesno kmh">29</td><td class="onlinedesno">1014</td><td class="onlinedesno">0.0</td><td class="onlinedesno">776</td></tr>
+	<tr><td class="onlineimena">Litija</td><td class="onlinedesno">23</td><td class="onlinedesno">74</td><td class="onlinedesno">&nbsp;</td><td class="onlinedesno mps">&nbsp;</td><td class="onlinedesno kmh">&nbsp;</td><td class="onlinedesno mps">&nbsp;</td><td class="onlinedesno kmh">&nbsp;</td><td class="onlinedesno">&nbsp;</td><td class="onlinedesno">0.0</td><td class="onlinedesno">&nbsp;</td></tr>
+	<tr><td class="onlineimena">Ljubljana</td><td class="onlinedesno">23</td><td class="onlinedesno">72</td><td class="onlinedesno">J</td><td class="onlinedesno mps">0.6</td><td class="onlinedesno kmh">2</td><td class="onlinedesno mps">2.9</td><td class="onlinedesno kmh">10</td><td class="onlinedesno">1017</td><td class="onlinedesno">0.0</td><td class="onlinedesno">521</td></tr>
+	<tr><td class="onlineimena">Malkovec</td><td class="onlinedesno">26</td><td class="onlinedesno">55</td><td class="onlinedesno">J</td><td class="onlinedesno mps">0.7</td><td class="onlinedesno kmh">3</td><td class="onlinedesno mps">4.9</td><td class="onlinedesno kmh">18</td><td class="onlinedesno">1016</td><td class="onlinedesno">0.0</td><td class="onlinedesno">439</td></tr>
+	<tr><td class="onlineimena">Maribor</td><td class="onlinedesno">22</td><td class="onlinedesno">72</td><td class="onlinedesno">Z</td><td class="onlinedesno mps">2.3</td><td class="onlinedesno kmh">8</td><td class="onlinedesno mps">7.0</td><td class="onlinedesno kmh">25</td><td class="onlinedesno">1014</td><td class="onlinedesno">0.0</td><td class="onlinedesno">&nbsp;</td></tr>
+	<tr><td class="onlineimena">Murska Sobota</td><td class="onlinedesno">24</td><td class="onlinedesno">67</td><td class="onlinedesno">JZ</td><td class="onlinedesno mps">2.2</td><td class="onlinedesno kmh">8</td><td class="onlinedesno mps">5.1</td><td class="onlinedesno kmh">18</td><td class="onlinedesno">1016</td><td class="onlinedesno">0.0</td><td class="onlinedesno">157</td></tr>
+	<tr><td class="onlineimena">Nova Gorica</td><td class="onlinedesno">28</td><td class="onlinedesno">59</td><td class="onlinedesno">SZ</td><td class="onlinedesno mps">1.4</td><td class="onlinedesno kmh">5</td><td class="onlinedesno mps">3.7</td><td class="onlinedesno kmh">13</td><td class="onlinedesno">1015</td><td class="onlinedesno">0.0</td><td class="onlinedesno">-</td></tr>
+	<tr><td class="onlineimena">Novo mesto</td><td class="onlinedesno">29</td><td class="onlinedesno">38</td><td class="onlinedesno">Z</td><td class="onlinedesno mps">1.0</td><td class="onlinedesno kmh">4</td><td class="onlinedesno mps">3.1</td><td class="onlinedesno kmh">11</td><td class="onlinedesno">1015</td><td class="onlinedesno">0.0</td><td class="onlinedesno">585</td></tr>
+	<tr><td class="onlineimena">Park Škocj. jame</td><td class="onlinedesno">32</td><td class="onlinedesno">27</td><td class="onlinedesno">V</td><td class="onlinedesno mps">2.8</td><td class="onlinedesno kmh">10</td><td class="onlinedesno mps">8.3</td><td class="onlinedesno kmh">30</td><td class="onlinedesno">1014</td><td class="onlinedesno">0.0</td><td class="onlinedesno">747</td></tr>
+	<tr><td class="onlineimena">Piran-ocean. boja</td><td class="onlinedesno">29</td><td class="onlinedesno">56</td><td class="onlinedesno">S</td><td class="onlinedesno mps">4.0</td><td class="onlinedesno kmh">14</td><td class="onlinedesno mps">5.1</td><td class="onlinedesno kmh">18</td><td class="onlinedesno">&nbsp;</td><td class="onlinedesno">&nbsp;</td><td class="onlinedesno">&nbsp;</td></tr>
+	<tr><td class="onlineimena">Podčetrtek</td><td class="onlinedesno">22</td><td class="onlinedesno">80</td><td class="onlinedesno">S</td><td class="onlinedesno mps">2.1</td><td class="onlinedesno kmh">8</td><td class="onlinedesno mps">4.0</td><td class="onlinedesno kmh">14</td><td class="onlinedesno">1016</td><td class="onlinedesno">0.0</td><td class="onlinedesno">346</td></tr>
+	<tr><td class="onlineimena">Postojna</td><td class="onlinedesno">30</td><td class="onlinedesno">36</td><td class="onlinedesno">S</td><td class="onlinedesno mps">2.1</td><td class="onlinedesno kmh">8</td><td class="onlinedesno mps">5.4</td><td class="onlinedesno kmh">19</td><td class="onlinedesno">&nbsp;</td><td class="onlinedesno">0.0</td><td class="onlinedesno">&nbsp;</td></tr>
+	<tr><td class="onlineimena">Ptuj</td><td class="onlinedesno">22</td><td class="onlinedesno">81</td><td class="onlinedesno">JZ</td><td class="onlinedesno mps">0.6</td><td class="onlinedesno kmh">2</td><td class="onlinedesno mps">4.1</td><td class="onlinedesno kmh">15</td><td class="onlinedesno">&nbsp;</td><td class="onlinedesno">0.0</td><td class="onlinedesno">282</td></tr>
+	<tr><td class="onlineimena">Radenci</td><td class="onlinedesno">23</td><td class="onlinedesno">76</td><td class="onlinedesno">J</td><td class="onlinedesno mps">0.3</td><td class="onlinedesno kmh">1</td><td class="onlinedesno mps">4.2</td><td class="onlinedesno kmh">15</td><td class="onlinedesno">1017</td><td class="onlinedesno">0.0</td><td class="onlinedesno">175</td></tr>
+	<tr><td class="onlineimena">Ravne na Koroškem</td><td class="onlinedesno">23</td><td class="onlinedesno">76</td><td class="onlinedesno">JZ</td><td class="onlinedesno mps">3.7</td><td class="onlinedesno kmh">13</td><td class="onlinedesno mps">6.6</td><td class="onlinedesno kmh">24</td><td class="onlinedesno">&nbsp;</td><td class="onlinedesno">0.0</td><td class="onlinedesno">775</td></tr>
+	<tr><td class="onlineimena">Slovenj Gradec</td><td class="onlinedesno">21</td><td class="onlinedesno">88</td><td class="onlinedesno">SZ</td><td class="onlinedesno mps">1.5</td><td class="onlinedesno kmh">5</td><td class="onlinedesno mps">3.8</td><td class="onlinedesno kmh">14</td><td class="onlinedesno">&nbsp;</td><td class="onlinedesno">0.0</td><td class="onlinedesno">743</td></tr>
+	<tr><td class="onlineimena">Velenje</td><td class="onlinedesno">21</td><td class="onlinedesno">85</td><td class="onlinedesno">SZ</td><td class="onlinedesno mps">1.7</td><td class="onlinedesno kmh">6</td><td class="onlinedesno mps">4.5</td><td class="onlinedesno kmh">16</td><td class="onlinedesno">&nbsp;</td><td class="onlinedesno">&nbsp;</td><td class="onlinedesno">&nbsp;</td></tr>
+	<tr><td class="onlineimena">Babno Polje (756 m)</td><td class="onlinedesno">29</td><td class="onlinedesno">37</td><td class="onlinedesno">&nbsp;</td><td class="onlinedesno mps">&nbsp;</td><td class="onlinedesno kmh">&nbsp;</td><td class="onlinedesno mps">&nbsp;</td><td class="onlinedesno kmh">&nbsp;</td><td class="onlinedesno">&nbsp;</td><td class="onlinedesno">&nbsp;</td><td class="onlinedesno">&nbsp;</td></tr>
+	<tr><td class="onlineimena">Rateče (864 m)</td><td class="onlinedesno">24</td><td class="onlinedesno">67</td><td class="onlinedesno">Z</td><td class="onlinedesno mps">1.2</td><td class="onlinedesno kmh">4</td><td class="onlinedesno mps">2.9</td><td class="onlinedesno kmh">10</td><td class="onlinedesno">*922</td><td class="onlinedesno">0.0</td><td class="onlinedesno">786</td></tr>
+	<tr><td class="onlineimena">Lisca (943 m)</td><td class="onlinedesno">20</td><td class="onlinedesno">64</td><td class="onlinedesno">Z</td><td class="onlinedesno mps">3.0</td><td class="onlinedesno kmh">11</td><td class="onlinedesno mps">9.6</td><td class="onlinedesno kmh">35</td><td class="onlinedesno">*912</td><td class="onlinedesno">0.0</td><td class="onlinedesno">&nbsp;</td></tr>
+	<tr><td class="onlineimena">Otlica (965 m)</td><td class="onlinedesno">23</td><td class="onlinedesno">78</td><td class="onlinedesno">-</td><td class="onlinedesno mps">-</td><td class="onlinedesno kmh">-</td><td class="onlinedesno mps">&nbsp;</td><td class="onlinedesno kmh">&nbsp;</td><td class="onlinedesno">-</td><td class="onlinedesno">0.0</td><td class="onlinedesno">621</td></tr>
+	<tr><td class="onlineimena">Rudno polje (1347 m)</td><td class="onlinedesno">20</td><td class="onlinedesno">77</td><td class="onlinedesno">SV</td><td class="onlinedesno mps">0.4</td><td class="onlinedesno kmh">1</td><td class="onlinedesno mps">1.5</td><td class="onlinedesno kmh">5</td><td class="onlinedesno">&nbsp;</td><td class="onlinedesno">0.0</td><td class="onlinedesno">&nbsp;</td></tr>
+	<tr><td class="onlineimena">Rogla (1492 m)</td><td class="onlinedesno">15</td><td class="onlinedesno">85</td><td class="onlinedesno">Z</td><td class="onlinedesno mps">4.2</td><td class="onlinedesno kmh">15</td><td class="onlinedesno mps">9.0</td><td class="onlinedesno kmh">32</td><td class="onlinedesno">&nbsp;</td><td class="onlinedesno">0.1</td><td class="onlinedesno">408</td></tr>
+	<tr><td class="onlineimena">Krvavec (1740 m)</td><td class="onlinedesno">17</td><td class="onlinedesno">64</td><td class="onlinedesno">SZ</td><td class="onlinedesno mps">5.5</td><td class="onlinedesno kmh">20</td><td class="onlinedesno mps">8.7</td><td class="onlinedesno kmh">31</td><td class="onlinedesno">*831</td><td class="onlinedesno">0.0</td><td class="onlinedesno">819</td></tr>
+	<tr><td class="onlineimena">Kredarica (2515 m)</td><td class="onlinedesno">13</td><td class="onlinedesno">66</td><td class="onlinedesno">S</td><td class="onlinedesno mps">1.8</td><td class="onlinedesno kmh">6</td><td class="onlinedesno mps">9.6</td><td class="onlinedesno kmh">35</td><td class="onlinedesno">*759</td><td class="onlinedesno">-</td><td class="onlinedesno">696</td></tr>
+</table>
+
+
+<br />
+Opombe:<br />
+Podatki so pridobljeni v realnem &#269;asu in so neuradni. Opozarjamo, da ne prevzamemo odgovornosti za morebitno nastalo &#353;kodo, ki bi nastala zaradi odlo&#269;itve, sprejete na osnovi teh podatkov.
+<br />
+<br />
+Smer, od koder piha veter, je podana na naslednji na&#269;in:
+<dl>
+<dd>S - severni veter</dd>
+<dd>SV - severovzhodni veter</dd>
+<dd>V - vzhodni veter</dd>
+<dd>JV - jugovzhodni veter</dd>
+<dd>J - južni veter</dd>
+<dd>JZ - jugozahodni veter</dd>
+<dd>Z - zahodni veter</dd>
+<dd>SZ - severozahodni veter</dd>
+</dl>
+
+Hitrost vetra in sunkov je podana v km/h in zaokro&#382;ena na celo &#353;tevilo. Za prikaz hitrosti v m/s pojdite z mi&#353;ko na izbrano vrednost v km/h.
+<br />
+Vrednost zra&#269;nega tlaka v hPa je zaradi medsebojne primerljivosti postaj z razli&#269;no nadmorsko vi&#353;ino reducirana na morski nivo.
+<br />
+* Pri postajah z nadmorsko vi&#353;ino nad 700 m zaradi prevelikih napak prera&#269;un na morski nivo ni izveden in je navedena dejanska vrednost zra&#269nega tlaka na posamezni postaji.
+<br />
+Prazna polja pomenijo, da tega parametra na posamezni postaji ne merimo, polja s - pa, da trenutno vrednost ni dosegljiva iz tehni&#269;nih razlogov.
+
+
+
+
+      </td>
+      
+        
+        
+        
+        
+      
+    </tr>
+  </table>
+
+    <div id="noga">
+    <div>
+      <h1>Kontakt</h1>
+      Agencija RS za okolje<br />
+      Vojkova 1b<br />
+      1000 Ljubljana, Slovenija<br />
+      Tel: +386 (0)1 4784 000<br />
+      Fax: +386 (0)1 4784 052<br />
+      <a href="mailto:gp.arso@gov.si">gp.arso@gov.si</a>
+    </div>
+    <div>
+      <h1>Izpostavljene vsebine</h1>
+      <a href="/o%20agenciji/generalni%20direktor/">Generalni direktor</a><br />
+      <a href="/o%20agenciji/novice/">Novice</a><br />
+      <a href="/o%20agenciji/strate%c5%a1ki%20dokumenti/">Strateški dokumenti</a><br />
+      <a href="/o%20agenciji/katalog%20informacij%20javnega%20zna%c4%8daja/">Katalog informacij javnega značaja</a><br />
+      <a href="/o%20agenciji/obvestila/">Obvestila</a><br />
+      <a href="/o%20agenciji/razpisi/">Razpisi</a><br />
+      <a href="/o%20agenciji/Javna%20naznanila/">Javna naznanila</a><br />
+    </div>
+    <div>
+      <h1>&nbsp;</h1>
+      <a href="/o%20agenciji/okoljski%20znaki/">Okoljski znaki</a><br />
+      <a href="/o%20agenciji/EU%20sofinancira/">EU sofinancira</a><br />
+      <a href="/o%20agenciji/laboratoriji/">Laboratorij</a><br />
+      <a href="/o%20agenciji/knji%c5%benica/">Knjižnica</a><br />
+      <a href="/o%20agenciji/uradne%20ure/">Uradne ure</a><br />
+      <a href="/o%20agenciji/kje%20smo/">Kje smo</a><br />
+    </div>
+    <div>
+      <h1>Povezave</h1>
+      <a href="http://www.vlada.si/">Vlada Republike Slovenije</a><br />
+      <a href="http://www.vlada.si/si/o_vladi/kdo_je_kdo/ministrstva/">Ministrstva</a><br />
+      <a href="http://www.vlada.si/si/o_vladi/seznami_in_povezave/spletna_mesta_vladnih_sluzb/">Vladne službe</a><br />
+      <a href="http://www.dz-rs.si/">Državni zbor</a><br />
+      <a href="http://e-uprava.gov.si/e-uprava/">E-uprava</a><br />
+    </div>
+  </div>
+  <div id="noga2">
+    <div>
+      &copy; Agencija Republike Slovenije za okolje
+    </div>
+    <div>
+      <a href="/ostraneh.html">O spletnih straneh ARSO</a>
+    </div>
+  </div>
+
+  
+</body>
+
+</html>
