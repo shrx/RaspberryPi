@@ -11,8 +11,8 @@
 # trend=$4
 
 kje=1
-pritiskMax=1038	# izola-vreme.info (od feb 2011 do avg 2012)
-pritiskMin=985	# izola-vreme.info (od feb 2011 do avg 2012)
+pritiskMax=1017 #1038 izola-vreme.info (od feb 2011 do avg 2012)
+pritiskMin=990 #985 izola-vreme.info (od feb 2011 do avg 2012)
 
 # uporaba: napoved $pritisk $mesec $veter $trend $kje $pritiskMax $pritiskMin
 # pritisk: pritisk korigiran na nadmorsko višino 0 v hPa (mbar)

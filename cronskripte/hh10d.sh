@@ -14,7 +14,8 @@ pred=$(echo ${p#*,})
 z=$(sed -n "$l""p" "$file")
 zad=$(echo ${z#*,})
 
-ARDUINO_PORT=$(ls /dev/ttyUSB*)
+#ARDUINO_PORT=$(ls /dev/ttyUSB*)
+ARDUINO_PORT=$(ls /dev/ttyAMA*)
 ARDUINO_SPEED=9600
 
 # Set speed for usb
