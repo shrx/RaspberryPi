@@ -84,7 +84,8 @@ spike=$(echo ${spike#-})
 base=$(echo "($pred-$pres)*100" | bc)
 base=$(echo ${base#-})
 
-if [ $(date '+%Y/%m/%d %H') == "$datumzad" ]; then
+datumzdej=$(date '+%Y/%m/%d %H')
+if [ "$datumzdej" == "$datumzad" ]; then
 	if [ "$pred" == "$zad" -a "$zad" == "$pres" ] || [ ${spike%%.*} -ge 7 -a ${base%%.*} -le 3 ]; then
 		sed -i "$l""d" "$file"
 	fi

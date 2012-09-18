@@ -65,7 +65,8 @@ temp2=$(printf "%.1f\n" "$temp2")
 
 # -------- skupaj --------
 
-if [ $(date '+%Y/%m/%d %H') == "$datumzad" ]; then
+datumzdej=$(date '+%Y/%m/%d %H')
+if [ "$datumzdej" == "$datumzad" ]; then
 	if [ "$pred" == "$zad" -a "$zad" == "$temp2,$temp" ]; then
 		sed -i "$l""d" "$file"
 	fi

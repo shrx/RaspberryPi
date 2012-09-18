@@ -49,7 +49,8 @@ mean=$(echo "scale=2; $total/5" | bc -l)
 # fi
 RH=$(printf "%.0f\n" "$mean")
 
-if [ $(date '+%Y/%m/%d %H') == "$datumzad" ]; then
+datumzdej=$(date '+%Y/%m/%d %H')
+if [ "$datumzdej" == "$datumzad" ]; then
 	if [ "$pred" == "$zad" -a "$zad" == "$RH" ]; then
 		sed -i "$l""d" "$file"
 	fi
@@ -102,7 +103,8 @@ z=$(sed -n "$l""p" "$fileDP")
 zad=$(echo ${z#*,})
 datumzad=$(echo ${z%%:*})
 
-if [ $(date '+%Y/%m/%d %H') == "$datumzad" ]; then
+datumzdej=$(date '+%Y/%m/%d %H')
+if [ "$datumzdej" == "$datumzad" ]; then
 	if [ "$pred" == "$zad" -a "$zad" == "$DP" ]; then
 		sed -i "$l""d" "$fileDP"
 	fi
@@ -165,7 +167,8 @@ z=$(sed -n "$l""p" "$fileHI")
 zad=$(echo ${z#*,})
 datumzad=$(echo ${z%%:*})
 
-if [ $(date '+%Y/%m/%d %H') == "$datumzad" ]; then
+datumzdej=$(date '+%Y/%m/%d %H')
+if [ "$datumzdej" == "$datumzad" ]; then
 	if [ "$pred" == "$zad" -a "$zad" == "$HI" ]; then
 		sed -i "$l""d" "$fileHI"
 	fi
