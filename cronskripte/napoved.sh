@@ -8,8 +8,8 @@ echo $pexp
 
 fileNap="/home/pi/stran/data/napoved-p.csv"
 
-h1=$(head -n 10 "$fileNap")
-now=$(tail -n 10 "$fileNap")
+h1=$(head -n 5 "$fileNap")
+now=$(tail -n 5 "$fileNap")
 
 n=0
 sum=0

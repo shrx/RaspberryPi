@@ -45,8 +45,8 @@ elif (sys.argv[1] == "/home/pi/stran/data/napoved-t.csv"):
 # for i in range(0, len(mycsvlist)-2):
 # 	delta = delta + abs(mycsvlist[i]-mycsvlist[i+1])
 
-h1 = mean(mycsvlist[:10])
-zdej = mean(mycsvlist[-10:])
+h1 = mean(mycsvlist[:5])
+zdej = mean(mycsvlist[-5:])
 raz = zdej - h1
 delta = abs(raz)
 

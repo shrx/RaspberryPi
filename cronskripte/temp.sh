@@ -14,6 +14,7 @@ pred=$(echo ${p#*,})
 
 z=$(sed -n "$l""p" "$file")
 zad=$(echo ${z#*,})
+datumzad=$(echo ${z%%:*})
 
 # -------- bmp085 --------
 
@@ -64,8 +65,10 @@ temp2=$(printf "%.1f\n" "$temp2")
 
 # -------- skupaj --------
 
-if [ "$pred" == "$zad" -a "$zad" == "$temp2,$temp" ]; then
-	sed -i "$l""d" "$file"
+if [ $(date '+%Y/%m/%d %H') == "$datumzad" ]; then
+	if [ "$pred" == "$zad" -a "$zad" == "$temp2,$temp" ]; then
+		sed -i "$l""d" "$file"
+	fi
 fi
 
 echo "$datum,$temp2,$temp" >> "$file"

@@ -13,6 +13,7 @@ pred=$(echo ${p#*,})
 
 z=$(sed -n "$l""p" "$file")
 zad=$(echo ${z#*,})
+datumzad=$(echo ${z%%:*})
 
 #ARDUINO_PORT=$(ls /dev/ttyUSB*)
 ARDUINO_PORT=$(ls /dev/ttyAMA*)
@@ -48,8 +49,10 @@ mean=$(echo "scale=2; $total/5" | bc -l)
 # fi
 RH=$(printf "%.0f\n" "$mean")
 
-if [ "$pred" == "$zad" -a "$zad" == "$RH" ]; then
-	sed -i "$l""d" "$file"
+if [ $(date '+%Y/%m/%d %H') == "$datumzad" ]; then
+	if [ "$pred" == "$zad" -a "$zad" == "$RH" ]; then
+		sed -i "$l""d" "$file"
+	fi
 fi
 
 echo "$datum,$RH" >> "$file"
@@ -97,9 +100,12 @@ pred=$(echo ${p#*,})
 
 z=$(sed -n "$l""p" "$fileDP")
 zad=$(echo ${z#*,})
+datumzad=$(echo ${z%%:*})
 
-if [ "$pred" == "$zad" -a "$zad" == "$DP" ]; then
-	sed -i "$l""d" "$fileDP"
+if [ $(date '+%Y/%m/%d %H') == "$datumzad" ]; then
+	if [ "$pred" == "$zad" -a "$zad" == "$DP" ]; then
+		sed -i "$l""d" "$fileDP"
+	fi
 fi
 
 echo "$datum,$DP" >> "$fileDP"
@@ -157,9 +163,12 @@ pred=$(echo ${p#*,})
 
 z=$(sed -n "$l""p" "$fileHI")
 zad=$(echo ${z#*,})
+datumzad=$(echo ${z%%:*})
 
-if [ "$pred" == "$zad" -a "$zad" == "$HI" ]; then
-	sed -i "$l""d" "$fileHI"
+if [ $(date '+%Y/%m/%d %H') == "$datumzad" ]; then
+	if [ "$pred" == "$zad" -a "$zad" == "$HI" ]; then
+		sed -i "$l""d" "$fileHI"
+	fi
 fi
 
 echo "$datum,$HI" >> "$fileHI"

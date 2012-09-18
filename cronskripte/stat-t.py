@@ -43,9 +43,25 @@ print(x4[0],"%.2f" % x4[1],sep=",")
 # ure
 
 x1 = []
+i = 0
 for row in mycsvlist:
+	j = 1
 	part = row[0].split(" ",1)[1].split(":",2)
+
+	if i != 0:
+		lastHour = x1[i-1][1]
+		hour = int(part[0])
+		if hour == 0 and lastHour == 23:
+			hour = 24
+
+		while lastHour < hour-1:
+			lastHour = lastHour+1
+			x1.append([ x1[i-1][0], lastHour, 0, x1[i-1][-1] ])
+			j = j+1
+
 	x1.append([ int(row[0].split(" ",1)[0].split("/",2)[-1]), int(part[0]), int(part[1]), row[1] ])
+	i = i+j
+
 x2 = [list(group) for key,group in itertools.groupby(x1,operator.itemgetter(-3))][1:-1]
 x3 = []
 for row in x2:
@@ -72,9 +88,25 @@ print(min2)
 # dnevi
 
 x1 = []
+i = 0
 for row in mycsvlist:
+	j = 1
 	part = row[0].split(" ",1)[1].split(":",2)
+
+	if i != 0:
+		lastHour = x1[i-1][1]
+		hour = int(part[0])
+		if hour == 0 and lastHour == 23:
+			hour = 24
+
+		while lastHour < hour-1:
+			lastHour = lastHour+1
+			x1.append([ x1[i-1][0], lastHour, 0, x1[i-1][-1] ])
+			j = j+1
+
 	x1.append([ row[0].split(" ",1)[0], int(part[0]), int(part[1]), row[1] ])
+	i = i+j
+
 x2 = [list(group) for key,group in itertools.groupby(x1,operator.itemgetter(-3))][1:-1]
 x3 = []
 for row in x2:
@@ -91,9 +123,25 @@ result(x6)
 # meseci
 
 x1 = []
+i = 0
 for row in mycsvlist:
+	j = 1
 	part = row[0].split(" ",1)[1].split(":",2)
+
+	if i != 0:
+		lastHour = x1[i-1][1]
+		hour = int(part[0])
+		if hour == 0 and lastHour == 23:
+			hour = 24
+
+		while lastHour < hour-1:
+			lastHour = lastHour+1
+			x1.append([ x1[i-1][0], lastHour, 0, x1[i-1][-1] ])
+			j = j+1
+
 	x1.append([ int(row[0].split("/",2)[1]), int(part[0]), int(part[1]), row[1] ])
+	i = i+j
+
 x2 = [list(group) for key,group in itertools.groupby(x1,operator.itemgetter(-3))][1:-1]
 x3 = []
 for row in x2:
@@ -110,9 +158,25 @@ result(x6)
 # leta
 
 x1 = []
+i = 0
 for row in mycsvlist:
+	j = 1
 	part = row[0].split(" ",1)[1].split(":",2)
+
+	if i != 0:
+		lastHour = x1[i-1][1]
+		hour = int(part[0])
+		if hour == 0 and lastHour == 23:
+			hour = 24
+
+		while lastHour < hour-1:
+			lastHour = lastHour+1
+			x1.append([ x1[i-1][0], lastHour, 0, x1[i-1][-1] ])
+			j = j+1
+
 	x1.append([ int(row[0].split("/",1)[0]), int(part[0]), int(part[1]), row[1] ])
+	i = i+j
+
 x2 = [list(group) for key,group in itertools.groupby(x1,operator.itemgetter(-3))][1:-1]
 x3 = []
 for row in x2:
