@@ -56,6 +56,10 @@ temp2=$(echo "scale=4; $dec*0.0625" | bc)
 if [ ${temp2%%.*} -ge 127 ]; then
 	temp2=$(echo "scale=4; $temp2-255" | bc)
 fi
+
+# kalibracija
+temp2=$(echo "scale=4; 1.11994+0.97737*$temp2" | bc)
+
 temp2=$(printf "%.1f\n" "$temp2")
 
 # -------- skupaj --------
@@ -70,6 +74,6 @@ echo "$temp2,$temp" >> "$fileNap"
 
 x=$(wc -l "$fileNap")
 tock=$(echo ${x%% *})
-if [ $tock -gt 70 ]; then
+if [ $tock -gt 14 ]; then
 	sed -i "1d" "$fileNap"
 fi

@@ -78,7 +78,12 @@ while [ ${pres%%.*} -lt 70 -o ${pres%%.*} -gt 120 ]; do
 	pres=$(echo "scale=2; $presPa/1000" | bc)
 done
 
-if [ "$pred" == "$zad" -a "$zad" == "$pres" ]; then
+spike=$(echo "($pred-$zad)*100" | bc)
+spike=$(echo ${spike#-})
+base=$(echo "($pred-$pres)*100" | bc)
+base=$(echo ${base#-})
+
+if [ "$pred" == "$zad" -a "$zad" == "$pres" ] || [ ${spike%%.*} -ge 7 -a ${base%%.*} -le 3 ]; then
 	sed -i "$l""d" "$file"
 fi
 
@@ -88,6 +93,6 @@ echo "$presPa" >> "$fileNap"
 
 x=$(wc -l "$fileNap")
 tock=$(echo ${x%% *})
-if [ $tock -gt 70 ]; then
+if [ $tock -gt 14 ]; then
 	sed -i "1d" "$fileNap"
 fi

@@ -15,8 +15,10 @@ zad=$(echo ${z##*,})
 datum=$(date '+%Y/%m/%d %H:%M:%S')
 
 x=$(uptime)
-y=$(echo ${x##*:})
-load=$(echo ${y%%,*})
+y=$(echo ${x##*: })
+load=$(echo ${y#*, })
+load=$(echo "${load%%,*}*100" | bc)
+load=$(printf "%0.f" $load)
 
 if [ "$pred" == "$zad" -a "$zad" == "$load" ]; then
 	sed -i "$l""d" "$file"

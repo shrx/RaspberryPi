@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 # -*- coding: UTF-8 -*-
 from __future__ import print_function
 import csv
@@ -31,9 +32,9 @@ mycsvlist = val
 
 zadnja = mycsvlist[-1]
 if (sys.argv[1] == "/home/pi/stran/data/napoved-p.csv"):
-	q1 = 0.01 + 0.01			# spremembe vrednosti senzorjev
-	q3 = 0.04 + 0.04
-	q0 = 0.01 #234.569				# mathematica: delta-x.csv
+	q1 = 20			# spremembe vrednosti senzorjev
+	q3 = 60
+	q0 = 10 #234.569				# mathematica: delta-x.csv
 	zadnja = zadnja/1000
 elif (sys.argv[1] == "/home/pi/stran/data/napoved-t.csv"):
 	q1 = 0.1 + 0.1
@@ -49,11 +50,16 @@ zdej = mean(mycsvlist[-10:])
 raz = zdej - h1
 delta = abs(raz)
 
+# print(h1)
+# print(zdej)
+# print(raz)
+# print(delta)
+
 if (delta <= q0):
 	kako = ", nespremenljivo"
-elif (abs(raz) < q1):
+elif (delta < q1):
 	kako = ", počasi"
-elif (abs(raz) > q3):
+elif (delta > q3):
 	kako = ", hitro"
 else:
 	kako = ","

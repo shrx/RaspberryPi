@@ -58,7 +58,7 @@ echo "$RH" >> "$fileNap"
 
 x=$(wc -l "$fileNap")
 tock=$(echo ${x%% *})
-if [ $tock -gt 70 ]; then
+if [ $tock -gt 14 ]; then
 	sed -i "1d" "$fileNap"
 fi
 
@@ -108,7 +108,7 @@ echo "$DP" >> "$fileDPNap"
 
 x=$(wc -l "$fileDPNap")
 tock=$(echo ${x%% *})
-if [ $tock -gt 70 ]; then
+if [ $tock -gt 14 ]; then
 	sed -i "1d" "$fileDPNap"
 fi
 
@@ -168,6 +168,6 @@ echo "$HI" >> "$fileHINap"
 
 x=$(wc -l "$fileHINap")
 tock=$(echo ${x%% *})
-if [ $tock -gt 70 ]; then
+if [ $tock -gt 14 ]; then
 	sed -i "1d" "$fileHINap"
 fi
