@@ -59,7 +59,7 @@ for row in mycsvlist:
 
 	x1.append([ int(row[0].split(" ",1)[0].split("/",2)[-1]), int(part[0]), int(part[1]), row[1] ])
 	i = i+j
-print(x1)
+
 x2 = [list(group) for key,group in itertools.groupby(x1,operator.itemgetter(-3))][1:-1]
 x3 = []
 for row in x2:
