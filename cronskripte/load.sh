@@ -7,27 +7,26 @@ l=$(echo ${a%% *})
 l1=$((($l-1)))
 
 p=$(sed -n "$l1""p" "$file")
-pred=$(echo ${p##*,})
+pred=$(echo ${p#*,})
 
 z=$(sed -n "$l""p" "$file")
-zad=$(echo ${z##*,})
+zad=$(echo ${z#*,})
 
 datum=$(date '+%Y/%m/%d %H:%M:%S')
 
-x=$(uptime)
-y=$(echo ${x##*: })
-load=$(echo ${y#*, })
+load=$(uptime)
+temp=$(/opt/vc/bin/vcgencmd measure_temp)
+
+load=$(echo ${load##*: })
+load=$(echo ${load#*, })
 load=$(echo "${load%%,*}*100" | bc)
 load=$(printf "%0.f" $load)
 
-if [ "$pred" == "$zad" -a "$zad" == "$load" ]; then
+temp=$(echo ${temp##*=})
+temp=$(echo ${temp%%\'*})
+
+if [ "$pred" == "$zad" -a "$zad" == "$load,$temp" ]; then
 	sed -i "$l""d" "$file"
 fi
 
-#x=$(cat ~/stran/data/load.csv|wc -l)
-#tock=$(echo ${x% *})
-#if [ $tock -ge 1000 ]; then
-#	sed -i "2d" ~/stran/data/load.csv
-#fi
-
-echo "$datum,$load" >> "$file"
+echo "$datum,$load,$temp" >> "$file"

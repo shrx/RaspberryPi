@@ -1,4 +1,5 @@
 from __future__ import print_function
+import csv
 import itertools
 import operator
 from math import modf, floor
@@ -37,6 +38,13 @@ def result(x6):
 	min = sorted(x6,key=operator.itemgetter(1))[0]
 	print(max[0],"%.2f" % max[1],sep=",")
 	print(min[0],"%.2f" % min[1],sep=",")
+
+def csvExport(file,data):
+	with open(file, 'w') as csvfile:
+		datawriter = csv.writer(csvfile, delimiter=',',
+								quotechar='"', quoting=csv.QUOTE_MINIMAL)
+		datawriter.writerow(["date","value"])
+		datawriter.writerows(data)
 
 """
 File    quantile.py

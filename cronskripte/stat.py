@@ -113,7 +113,11 @@ x5 = [list(group) for key,group in itertools.groupby(x4,operator.itemgetter(0))]
 x6 = []
 for row in x5:
 	x6.append([row[0][0],mean(column(row,-1))])
+x7= []
+for row in x6:
+	x7.append([row[0],"%.2f" % row[1]])
 
+csvExport("/home/pi/stran/data/"+str(sys.argv[1]).split("/")[-1].split(".")[0]+"-d.csv",x7)
 print("dnevi")
 result(x6)
 
@@ -148,7 +152,11 @@ x5 = [list(group) for key,group in itertools.groupby(x4,operator.itemgetter(0))]
 x6 = []
 for row in x5:
 	x6.append([row[0][0],mean(column(row,-1))])
+x7= []
+for row in x6:
+	x7.append([row[0],"%.2f" % row[1]])
 
+csvExport("/home/pi/stran/data/"+str(sys.argv[1]).split("/")[-1].split(".")[0]+"-m.csv",x7)
 print("meseci")
 result(x6)
 
@@ -183,7 +191,11 @@ x5 = [list(group) for key,group in itertools.groupby(x4,operator.itemgetter(0))]
 x6 = []
 for row in x5:
 	x6.append([row[0][0],mean(column(row,-1))])
+x7= []
+for row in x6:
+	x7.append([row[0],"%.2f" % row[1]])
 
+csvExport("/home/pi/stran/data/"+str(sys.argv[1]).split("/")[-1].split(".")[0]+"-y.csv",x7)
 print("leta")
 result(x6)
 

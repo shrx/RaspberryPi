@@ -59,7 +59,7 @@ if [ ${temp2%%.*} -ge 127 ]; then
 fi
 
 # kalibracija
-temp2=$(echo "scale=4; 1.11994+0.97737*$temp2" | bc)
+temp2=$(echo "scale=4; 1.11994+0.97737*$temp2-0.1" | bc)
 
 temp2=$(printf "%.1f\n" "$temp2")
 
