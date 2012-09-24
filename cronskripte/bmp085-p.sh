@@ -85,7 +85,7 @@ base=$(echo "($pred-$pres)*100" | bc)
 base=$(echo ${base#-})
 
 hour=$(date '+%H')
-if [ $hour -eq 23 -o $hour -eq 0 ]; then
+if [ $hour -eq 0 -o $hour -eq 1 ]; then
 	datumzdej=$(date '+%Y/%m/%d %H')
 	if [ "$datumzdej" == "$datumzad" ]; then
 		if [ "$pred" == "$zad" -a "$zad" == "$pres" ] || [ ${spike%%.*} -ge 7 -a ${base%%.*} -le 3 ]; then

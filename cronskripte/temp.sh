@@ -66,7 +66,7 @@ temp2=$(printf "%.1f\n" "$temp2")
 # -------- skupaj --------
 
 hour=$(date '+%H')
-if [ $hour -eq 23 -o $hour -eq 0 ]; then
+if [ $hour -eq 0 -o $hour -eq 1 ]; then
 	datumzdej=$(date '+%Y/%m/%d %H')
 	if [ "$datumzdej" == "$datumzad" ]; then
 		if [ "$pred" == "$zad" -a "$zad" == "$temp2,$temp" ]; then

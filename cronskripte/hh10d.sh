@@ -50,7 +50,7 @@ mean=$(echo "scale=2; $total/5" | bc -l)
 RH=$(printf "%.0f\n" "$mean")
 
 hour=$(date '+%H')
-if [ $hour -eq 23 -o $hour -eq 0 ]; then
+if [ $hour -eq 0 -o $hour -eq 1 ]; then
 	datumzdej=$(date '+%Y/%m/%d %H')
 	if [ "$datumzdej" == "$datumzad" ]; then
 		if [ "$pred" == "$zad" -a "$zad" == "$RH" ]; then
@@ -111,7 +111,7 @@ zad=$(echo ${z#*,})
 datumzad=$(echo ${z%%:*})
 
 hour=$(date '+%H')
-if [ $hour -eq 23 -o $hour -eq 0 ]; then
+if [ $hour -eq 0 -o $hour -eq 1 ]; then
 	datumzdej=$(date '+%Y/%m/%d %H')
 	if [ "$datumzdej" == "$datumzad" ]; then
 		if [ "$pred" == "$zad" -a "$zad" == "$DP" ]; then
@@ -182,7 +182,7 @@ zad=$(echo ${z#*,})
 datumzad=$(echo ${z%%:*})
 
 hour=$(date '+%H')
-if [ $hour -eq 23 -o $hour -eq 0 ]; then
+if [ $hour -eq 0 -o $hour -eq 1 ]; then
 	datumzdej=$(date '+%Y/%m/%d %H')
 	if [ "$datumzdej" == "$datumzad" ]; then
 		if [ "$pred" == "$zad" -a "$zad" == "$HI" ]; then
