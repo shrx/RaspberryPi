@@ -198,7 +198,7 @@ x7=[]
 for row in x6:
 	x7.append([row[0],"%.2f" % row[1]])
 
-csvExport("/home/pi/stran/data/"+str(sys.argv[1]).split("/")[-1].split(".")[0]+"-y.csv",x6)
+csvExport("/home/pi/stran/data/"+str(sys.argv[1]).split("/")[-1].split(".")[0]+"-y.csv",x7)
 print("leta")
 result(x6)
 
