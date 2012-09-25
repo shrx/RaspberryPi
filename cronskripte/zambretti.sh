@@ -11,9 +11,9 @@
 # trend=$4
 
 kje=1
-pritiskMax=$(echo "1038*1.00856" | bc ) #1038 izola-vreme.info (od feb 2011 do avg 2012)
+pritiskMax=$(echo "1035" | bc ) #1038 izola-vreme.info (od feb 2011 do avg 2012, MSL) ##*1.00856
 pritiskMax=$(printf %.0f "$pritiskMax")
-pritiskMin=$(echo "985*1.00856" | bc ) #985 izola-vreme.info (od feb 2011 do avg 2012)
+pritiskMin=$(echo "985" | bc ) #985 izola-vreme.info (od feb 2011 do avg 2012, MSL) ##*1.00856
 pritiskMin=$(printf %.0f "$pritiskMin")
 
 # uporaba: napoved $pritisk $mesec $veter $trend $kje $pritiskMax $pritiskMin
@@ -27,7 +27,7 @@ pritiskMin=$(printf %.0f "$pritiskMin")
 
 function napoved {
 
-napovedi=("Ustaljeno jasno" "Jasno" "Postaja jasno" "Jasno& se slabša" "Jasno& možne plohe" "Pretežno jasno& se izboljšuje" "Pretežno jasno& prej možne plohe" "Pretežno jasno& kasneje možne plohe" "Prej plohe& se izboljšuje" "Spremenljivo& se izboljšuje" "Pretežno jasno& verjetne plohe" "Nestabilno& sledi izboljšanje" "Nestabilno& verjetno sledi izboljšanje" "Plohe z intervali jasnega vremena" "Plohe& se slabša" "Spremenljivo& nekaj dežja" "Nestabilno& kratki intervali jasnega vremena" "Nestabilno& kasneje dež" "Nestabilno& nekaj dežja" "Zelo nestabilno" "Občasen dež& se slabša" "Občasen dež& zelo nestabilno" "Dež v pogostih intervalih" "Dež& zelo nestabilno" "Nevihte& možno izboljšanje" "Nevihte& veliko dežja")
+napovedi=("Ustaljeno jasno" "Jasno" "Postaja jasno" "Jasno& se slabša" "Jasno& možne plohe" "Pretežno jasno& se izboljšuje" "Pretežno jasno& prej</br>možne plohe" "Pretežno jasno&</br>kasneje možne plohe" "Prej plohe& se izboljšuje" "Spremenljivo& se izboljšuje" "Pretežno jasno&</br>verjetne plohe" "Nestabilno& sledi izboljšanje" "Nestabilno& verjetno</br>sledi izboljšanje" "Plohe z intervali</br>jasnega vremena" "Plohe& se slabša" "Spremenljivo& nekaj dežja" "Nestabilno& kratki intervali</br>jasnega vremena" "Nestabilno& kasneje dež" "Nestabilno& nekaj dežja" "Zelo nestabilno" "Občasen dež& se slabša" "Občasen dež& zelo nestabilno" "Dež v pogostih intervalih" "Dež& zelo nestabilno" "Nevihte& možno izboljšanje" "Nevihte& veliko dežja")
 
 # equivalents of Zambretti 'dial window' letters A - Z
 opcijeRast=(25 25 25 24 24 19 16 12 11 9 8 6 5 2 1 1 0 0 0 0 0 0)
@@ -175,11 +175,11 @@ mesec=$(date +%m)
 # veter=${vet%%)*}
 
 v=$(curl --silent http://www.arso.gov.si/vreme/napovedi%20in%20podatki/vreme_avt.html | grep "Koper Kapitanija")
-v2=${v#*online}
-v3=${v2#*online}
-v4=${v3#*online}
-v5=${v4#*onlinedesno\">}
-veter=${v5%%<*}
+v=${v#*online}
+v=${v#*online}
+v=${v#*online}
+v=${v#*onlinedesno\">}
+veter=${v%%<*}
 
 # echo $pritisk
 # echo $trend
