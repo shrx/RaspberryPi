@@ -27,7 +27,7 @@ pritiskMin=$(printf %.0f "$pritiskMin")
 
 function napoved {
 
-napovedi=("Ustaljeno jasno" "Jasno" "Postaja jasno" "Jasno& se slabša" "Jasno& možne plohe" "Pretežno jasno& se izboljšuje" "Pretežno jasno& prej</br>možne plohe" "Pretežno jasno&</br>kasneje možne plohe" "Prej plohe& se izboljšuje" "Spremenljivo& se izboljšuje" "Pretežno jasno&</br>verjetne plohe" "Nestabilno& sledi izboljšanje" "Nestabilno& verjetno</br>sledi izboljšanje" "Plohe z intervali</br>jasnega vremena" "Plohe& se slabša" "Spremenljivo& nekaj dežja" "Nestabilno& kratki intervali</br>jasnega vremena" "Nestabilno& kasneje dež" "Nestabilno& nekaj dežja" "Zelo nestabilno" "Občasen dež& se slabša" "Občasen dež& zelo nestabilno" "Dež v pogostih intervalih" "Dež& zelo nestabilno" "Nevihte& možno izboljšanje" "Nevihte& veliko dežja")
+napovedi=("Ustaljeno lepo vreme." "Lepo vreme." "Postaja lepo." "Lepo vreme& se slabša." "Lepo vreme& možne plohe." "Pretežno lepo vreme& se izboljšuje." "Pretežno lepo vreme& prej možne plohe." "Pretežno lepo vreme& kasneje možne plohe." "Prej plohe& se izboljšuje." "Spremenljivo& se izboljšuje." "Pretežno lepo vreme& verjetne plohe." "Nestabilno& sledi izboljšanje." "Nestabilno& verjetno sledi izboljšanje." "Plohe z intervali lepšega vremena." "Plohe& se slabša." "Spremenljivo& nekaj dežja." "Nestabilno& kratki intervali lepšega vremena." "Nestabilno& kasneje dež." "Nestabilno& nekaj dežja." "Zelo nestabilno." "Občasen dež& se slabša." "Občasen dež& zelo nestabilno." "Dež v pogostih intervalih." "Dež& zelo nestabilno." "Nevihte& možno izboljšanje." "Nevihte& veliko dežja.")
 
 # equivalents of Zambretti 'dial window' letters A - Z
 opcijeRast=(25 25 25 24 24 19 16 12 11 9 8 6 5 2 1 1 0 0 0 0 0 0)
