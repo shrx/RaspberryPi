@@ -56,7 +56,7 @@ delta = abs(raz)
 # print(delta)
 
 if (delta <= q0):
-	kako = ", nespremenljivo"
+	kako = ", stabilno"
 elif (delta < q1):
 	kako = ", počasi"
 elif (delta > q3):

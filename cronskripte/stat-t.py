@@ -71,15 +71,17 @@ x4 = [list(group) for key,group in itertools.groupby(x3,operator.itemgetter(0))]
 min = []
 for row in x4:
 	min.append(sorted(row,key=operator.itemgetter(-1))[0][1])
-
 min1 = zip(min,map(min.count,min)) # tally
 min2 = sorted(min1,key=operator.itemgetter(-1))[-1][0] #sortBy[last]
 
 max = []
 for row in x4:
-	max.append(sorted(row,key=operator.itemgetter(-1))[-1][1])
+	maxByDay = sorted(row,key=operator.itemgetter(-1))[-1][1]
+	if maxByDay > min2:
+		max.append(maxByDay)
 max1 = zip(max,map(max.count,max))
 max2 = sorted(max1,key=operator.itemgetter(-1))[-1][0]
+
 
 print("ure")
 print(max2)
