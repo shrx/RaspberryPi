@@ -158,16 +158,20 @@ c16=-0.0000000000481975
 
 T=$(echo "$T*9/5 + 32" | bc -l)
 
-HI=$(echo "$c1 + $c2*$T + $c3*$RH + $c4*$T*$RH + $c5*$T^2 + $c6*$RH^2 + $c7*$T^2*$RH + $c8*$T*$RH^2 + $c9*$T^2*$RH^2 + $c10*$T^3 + $c11*$RH^3 + $c12*$T^3*$RH + $c13*$T*$RH^3 + $c14*$T^3*$RH^2 + $c15*$T^2*$RH^3 + $c16*$T^3*$RH^3" | bc -l)
-HI=$(echo "scale=2; ($HI-32)*5/9" | bc)
+if [ ${T%%.*} -ge 80 -a $RH -ge 40 ]; then
+	HI=$(echo "$c1 + $c2*$T + $c3*$RH + $c4*$T*$RH + $c5*$T^2 + $c6*$RH^2 + $c7*$T^2*$RH + $c8*$T*$RH^2 + $c9*$T^2*$RH^2 + $c10*$T^3 + $c11*$RH^3 + $c12*$T^3*$RH + $c13*$T*$RH^3 + $c14*$T^3*$RH^2 + $c15*$T^2*$RH^3 + $c16*$T^3*$RH^3" | bc -l)
+	HI=$(echo "scale=2; ($HI-32)*5/9" | bc)
 
-dec=${HI#*.}
-if [ $dec -le 25 ]; then
-	HI=${HI%.*}
-elif [ $dec -le 75 ]; then
-	HI=${HI%.*}".5"
+	dec=${HI#*.}
+	if [ $dec -le 25 ]; then
+		HI=${HI%.*}
+	elif [ $dec -le 75 ]; then
+		HI=${HI%.*}".5"
+	else
+		HI=$((${HI%.*}+1))
+	fi
 else
-	HI=$((${HI%.*}+1))
+	HI=$(echo "($T - 32)*5/9" | bc -l)
 fi
 
 a=$(wc -l "$fileHI")
