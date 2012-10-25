@@ -172,6 +172,7 @@ if [ ${T%%.*} -ge 80 -a $RH -ge 40 ]; then
 	fi
 else
 	HI=$(echo "($T - 32)*5/9" | bc -l)
+	HI=$(printf %.1f $HI)
 fi
 
 a=$(wc -l "$fileHI")
