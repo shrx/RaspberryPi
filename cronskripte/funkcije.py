@@ -24,6 +24,8 @@ def meanByHour(x):
 		if x[i][-2] != i*5:
 			x.insert(i, flatten([ x[i-1][:-2], [i*5], [x[i-1][-1]] ]))
 		i = i+1
+		if 	i == 11:
+			break
 	last = x[-1][-2]
 	if last != 55:
 		table = []
