@@ -17,8 +17,6 @@ for row in mycsvlist:
 	val.append([row[0],float(row[1].split("#")[0])])
 mycsvlist = val
 
-mycsvlist = val
-
 # abs
 
 max = sorted(mycsvlist,key=operator.itemgetter(1))[-1]

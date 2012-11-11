@@ -38,7 +38,7 @@ for i in {0..3}; do
 	done
 
 comment=""
-mean=$(echo "scale=2; $total/5" | bc -l)
+mean=$(echo "scale=2; $total/3" | bc -l)
 if [ ${mean%.*} -gt 100 ]; then
 	comment="# izola-vreme.info"
 	m=$(curl --silent http://izola-vreme.info/veter2/veter2.php|grep "%</td>")
