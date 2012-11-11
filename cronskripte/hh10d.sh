@@ -24,7 +24,7 @@ stty -F $ARDUINO_PORT ispeed $ARDUINO_SPEED ospeed $ARDUINO_SPEED raw
 exec 6<$ARDUINO_PORT
 
 total=0
-for i in {0..5}; do
+for i in {0..3}; do
 		# Read data from Arduino
 		read -u 6 f
 		if [ $i -ne 0 ]; then
@@ -37,8 +37,14 @@ for i in {0..5}; do
 		fi
 	done
 
-
+comment=""
 mean=$(echo "scale=2; $total/5" | bc -l)
+if [ ${mean%.*} -gt 100 ]; then
+	comment="# izola-vreme.info"
+	m=$(curl --silent http://izola-vreme.info/veter2/veter2.php|grep "%</td>")
+	m=${m%% *}
+	mean=${m#* }
+fi
 # dec=${mean#*.}
 # if [ $dec -le 25 ]; then
 # 	mean=${mean%.*}
@@ -63,7 +69,7 @@ else
 	fi
 fi
 
-echo "$datum,$RH" >> "$file"
+echo "$datum,$RH$comment" >> "$file"
 
 echo "$RH" >> "$fileNap"
 
@@ -171,8 +177,7 @@ if [ ${T%%.*} -ge 80 -a $RH -ge 40 ]; then
 		HI=$((${HI%.*}+1))
 	fi
 else
-	HI=$(echo "($T - 32)*5/9" | bc -l)
-	HI=$(printf %.1f $HI)
+	HI="null"
 fi
 
 a=$(wc -l "$fileHI")

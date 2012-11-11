@@ -14,7 +14,9 @@ mycsvlist = list(mycsv)
 
 val = []
 for row in mycsvlist:
-	val.append([row[0],float(row[1])])
+	val.append([row[0],float(row[1].split("#")[0])])
+mycsvlist = val
+
 mycsvlist = val
 
 # abs
