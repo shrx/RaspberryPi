@@ -154,7 +154,7 @@ else
 fi
 out="$out${napovedi[$izbira]}"
 
-echo "$out"
+echo "$out"",$izbira"
 
 }
 
@@ -188,6 +188,8 @@ veter=${v%%<*}
 # echo $veter
 
 nap=$(napoved $pritisk $mesec $veter $trend $kje $pritiskMax $pritiskMin)
+izbira=${nap##*,}
+nap=${nap%,*}
 datum=$(date +"%e. %m. %Y, %H:%M")
 
 # ------ sneg ------
@@ -196,10 +198,8 @@ datum=$(date +"%e. %m. %Y, %H:%M")
 T=$(cat "/home/pi/stran/data/zdej-t.csv")
 T=${T%%,*}
 
-m=$(date +%m)
-
 Fmts () {
-	Tmts=$(echo "$1 + $1*s(($m+2)/1.91)" | bc -l)
+	Tmts=$(echo "$1 + $1*s(($mesec+2)/1.91)" | bc -l)
 	result=$(expr 0 \> $Tmts)
 	if [ $result -eq "1" ]; then
 		Tmts=0.
@@ -208,12 +208,12 @@ Fmts () {
 }
 
 Fmrs () {
-	Tmrs=$(echo "$1*(0.55+s($m+4))*0.6" | bc -l)
+	Tmrs=$(echo "$1*(0.55+s($mesec+4))*0.6" | bc -l)
 	result=$(expr 0 \> $Tmrs)
 	if [ $result -eq "1" ]; then
 		Tmrs=0.
 	fi
-	if [ $m -eq 1 ]; then
+	if [ $mesec -eq 1 ]; then
 		Tmrs=$(echo "$Tmrs+0.1" | bc -l)
 	fi
 	echo $Tmrs
