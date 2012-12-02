@@ -146,12 +146,13 @@ if [ $opcija -gt 21 ]; then
 fi
 
 if [ $trend -eq 1 ]; then
-	out="$out${napovedi[${opcijeRast[$opcija]}]}"
+	izbira=${opcijePadanje[$opcija]}
 elif [ $trend -eq 2 ]; then
-	out="$out${napovedi[${opcijePadanje[$opcija]}]}"
+	izbira=${opcijeRast[$opcija]}
 else
-	out="$out${napovedi[${opcijeStabilno[$opcija]}]}"
+	izbira=${opcijeStabilno[$opcija]}
 fi
+out="$out${napovedi[$izbira]}"
 
 echo "$out"
 
@@ -188,6 +189,76 @@ veter=${v%%<*}
 
 nap=$(napoved $pritisk $mesec $veter $trend $kje $pritiskMax $pritiskMin)
 datum=$(date +"%e. %m. %Y, %H:%M")
+
+# ------ sneg ------
+# info: http://people.uleth.ca/~stefan.kienzle/Documents/Kienzle_HP_SnowTemp_2008.pdf
+
+T=$(cat "/home/pi/stran/data/zdej-t.csv")
+T=${T%%,*}
+
+m=$(date +%m)
+
+Fmts () {
+	Tmts=$(echo "$1 + $1*s(($m+2)/1.91)" | bc -l)
+	result=$(expr 0 \> $Tmts)
+	if [ $result -eq "1" ]; then
+		Tmts=0.
+	fi
+	echo $Tmts
+}
+
+Fmrs () {
+	Tmrs=$(echo "$1*(0.55+s($m+4))*0.6" | bc -l)
+	result=$(expr 0 \> $Tmrs)
+	if [ $result -eq "1" ]; then
+		Tmrs=0.
+	fi
+	if [ $m -eq 1 ]; then
+		Tmrs=$(echo "$Tmrs+0.1" | bc -l)
+	fi
+	echo $Tmrs
+}
+
+Frain () {
+	result=$(expr $3 \> $1)
+	if [ $result -eq "1" ]; then
+		Prain=$(echo "5*(($1-$3)/(1.4*$2))^3+6.76*(($1-$3)/(1.4*$2))^2+3.19*(($1-$3)/(1.4*$2))+0.5" | bc -l)
+		result=$(expr 0 \> $Prain)
+		if [ $result -eq "1" ]; then
+			Prain=0.
+		fi
+	else
+		Prain=$(echo "5*(($1-$3)/(1.4*$2))^3-6.76*(($1-$3)/(1.4*$2))^2+3.19*(($1-$3)/(1.4*$2))+0.5" | bc -l)
+		result=$(expr $Prain \> 1)
+		if [ $result -eq "1" ]; then
+			Prain=1.
+		fi
+	fi
+	echo $Prain
+}
+
+Tmts=$(Fmts 2)
+Tmrs=$(Fmrs 13)
+
+Prain=$(Frain $T $Tmrs $Tmts)
+
+result=$(expr $(expr 0.5 \< $Prain) + $(expr $Prain \<= 0.99) == 2)
+if [ $result -eq "1" ]; then
+	if [ $izbira -ge 3 ]; then
+		nap="$nap"" Možnost sneženja."
+	fi
+fi
+
+result=$(expr $Prain \<= 0.5)
+if [ $result -eq "1" ]; then
+	nap=$(echo $nap | sed 's/plohe/snežne plohe/g')
+	nap=$(echo $nap | sed 's/Plohe/Snežne plohe/g')
+	nap=$(echo $nap | sed 's/dežja/snega/g')
+	nap=$(echo $nap | sed 's/dež/sneg/g')
+	nap=$(echo $nap | sed 's/Dež/Sneg/g')
+fi
+
+# ------ /sneg ------
 
 echo "$datum,$nap"
 
