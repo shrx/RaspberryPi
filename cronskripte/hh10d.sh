@@ -96,13 +96,18 @@ gama=$(echo "l( ($RH/100) * e( ($b-($T/$d))*($T/($c+($T))) ) )" | bc -l)
 DP=$(echo "scale=3; ($c*$gama)/($b-($gama))" | bc)
 DP=$(printf "%.2f\n" "$DP")
 
+dpr=${DP%.*}
 dec=${DP#*.}
 if [ $dec -le 25 ]; then
-	DP=${DP%.*}
+	DP=$dpr
 elif [ $dec -le 75 ]; then
-	DP=${DP%.*}".5"
+	DP=$dpr".5"
 else
-	DP=$((${DP%.*}+1))
+	if [ $dpr -ge 0 ]; then
+		DP=$(($dpr+1))
+	else
+		DP=$(($dpr-1))
+	fi
 fi
 
 a=$(wc -l "$fileDP")
@@ -168,13 +173,14 @@ if [ ${T%%.*} -ge 80 -a $RH -ge 40 ]; then
 	HI=$(echo "$c1 + $c2*$T + $c3*$RH + $c4*$T*$RH + $c5*$T^2 + $c6*$RH^2 + $c7*$T^2*$RH + $c8*$T*$RH^2 + $c9*$T^2*$RH^2 + $c10*$T^3 + $c11*$RH^3 + $c12*$T^3*$RH + $c13*$T*$RH^3 + $c14*$T^3*$RH^2 + $c15*$T^2*$RH^3 + $c16*$T^3*$RH^3" | bc -l)
 	HI=$(echo "scale=2; ($HI-32)*5/9" | bc)
 
+	hir=${HI%.*}
 	dec=${HI#*.}
 	if [ $dec -le 25 ]; then
-		HI=${HI%.*}
+		HI=$hir
 	elif [ $dec -le 75 ]; then
-		HI=${HI%.*}".5"
+		HI=$hir".5"
 	else
-		HI=$((${HI%.*}+1))
+		HI=$(($hir+1))
 	fi
 else
 	HI="null"
