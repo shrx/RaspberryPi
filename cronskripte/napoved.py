@@ -19,7 +19,7 @@ from funkcije import mean, flatten#, quantile
 #
 # q0 = quantile(mycsvlist, 0.1)
 
-f = open(sys.argv[1], 'rt')		# f = open(sys.argv[2], 'rt')
+f = open(sys.argv[1], 'r')		# f = open(sys.argv[2], 'rt')
 mycsv = csv.reader(f)
 mycsvlist = list(mycsv)
 
