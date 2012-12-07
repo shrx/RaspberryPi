@@ -55,7 +55,7 @@ dec=$(printf "%d\n" "0x$msb$lsb")
 
 temp2=$(echo "scale=4; $dec*0.0625" | bc)
 if [ ${temp2%%.*} -ge 127 ]; then
-	temp2=$(echo "scale=4; $temp2-255" | bc)
+	temp2=$(echo "scale=4; $temp2-256" | bc)
 fi
 
 # kalibracija
