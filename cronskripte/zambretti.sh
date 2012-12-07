@@ -224,7 +224,7 @@ Frain () {
 	if [ $result -eq "1" ]; then
 		Prain=$(echo "5*(($1-$3)/(1.4*$2))^3+6.76*(($1-$3)/(1.4*$2))^2+3.19*(($1-$3)/(1.4*$2))+0.5" | bc -l)
 		result=$(expr 0 \> $Prain)
-		if [ $result -eq "1" ]; then
+		if [ ${Prain:0:1} == "-" ]; then
 			Prain=0.
 		fi
 	else
