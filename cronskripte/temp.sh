@@ -24,7 +24,9 @@ mc=-11075
 md=2432
 
 temp=101
-while [ ${temp%%.*} -gt 100 ]; do
+i=0
+while [ ${temp%%.*} -gt 100 ] && [ $i -le 5 ]; do
+	i=$(($i+1))
 	#set read ut
 	/usr/sbin/i2cset -y 0 0x77 0xf4 0x2e
 	sleep 0.05
@@ -53,7 +55,7 @@ msb=$(echo ${hexraw2:4:2})
 lsb=$(echo ${hexraw2:2:1})
 dec=$(printf "%d\n" "0x$msb$lsb")
 
-temp2=$(echo "scale=4; $dec*0.0625" | bc)
+temp2=$(echo "scale=5; $dec*0.0625" | bc)
 if [ ${temp2%%.*} -ge 127 ]; then
 	temp2=$(echo "scale=4; $temp2-256" | bc)
 fi

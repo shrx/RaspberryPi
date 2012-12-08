@@ -5,7 +5,7 @@ fileNap="/home/pi/stran/data/napoved-p.csv"
 
 a=$(wc -l "$file")
 l=$(echo ${a%% *})
-l1=$((($l-1)))
+l1=$(($l-1))
 
 p=$(sed -n "$l1""p" "$file")
 pred=$(echo ${p#*,})
@@ -29,7 +29,9 @@ mc=-11075
 md=2432
 
 pres=69
-while [ ${pres%%.*} -lt 70 -o ${pres%%.*} -gt 120 ]; do
+i=0
+while [ ${pres%%.*} -lt 70 -o ${pres%%.*} -gt 120 ] && [ $i -le 5 ]; do
+	i=$(($i+1))
 	#set read ut
 	/usr/sbin/i2cset -y 0 0x77 0xf4 0x2e
 	sleep 0.05
@@ -79,10 +81,16 @@ while [ ${pres%%.*} -lt 70 -o ${pres%%.*} -gt 120 ]; do
 	pres=$(echo "scale=2; $presPa/1000" | bc)
 done
 
-spike=$(echo "($pred-$zad)*100" | bc)
-spike=$(echo ${spike#-})
-base=$(echo "($pred-$pres)*100" | bc)
-base=$(echo ${base#-})
+#if [ $i -eq 5 ] && [ ${pres%%.*} -lt 70 -o ${pres%%.*} -gt 120 ]; then
+#	pres=""
+#	spike=0
+#	base=0
+#else
+	spike=$(echo "($pred-$zad)*100" | bc)
+	spike=$(echo ${spike#-})
+	base=$(echo "($pred-$pres)*100" | bc)
+	base=$(echo ${base#-})
+#fi
 
 hour=$(date '+%H')
 if [ $hour -eq 0 -o $hour -eq 1 ]; then
