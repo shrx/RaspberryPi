@@ -57,11 +57,15 @@ dec=$(printf "%d\n" "0x$msb$lsb")
 
 temp2=$(echo "scale=5; $dec*0.0625" | bc)
 if [ ${temp2%%.*} -ge 127 ]; then
-	temp2=$(echo "scale=4; $temp2-256" | bc)
+	temp2=$(echo "scale=5; $temp2-256" | bc)
 fi
 
-# kalibracija
-temp2=$(echo "scale=4; 1.11994+0.97737*$temp2-0.1" | bc)
+# kalibracija 16. 9. 2:15
+#temp2=$(echo "scale=4; 1.11994+0.97737*$temp2-0.1" | bc)
+# kalibracija 10. 12. 2012 01:21
+#temp2=$(echo "scale=4; -0.0905923+1.00713*$temp2" | bc)
+# skupaj:
+temp2=$(echo "scale=4; 0.93662+0.984339*$temp2" | bc)
 
 temp2=$(printf "%.1f\n" "$temp2")
 
