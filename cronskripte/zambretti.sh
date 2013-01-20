@@ -11,7 +11,7 @@
 # trend=$4
 
 kje=1
-pritiskMax=$(echo "1035" | bc ) #1038 izola-vreme.info (od feb 2011 do avg 2012, MSL) ##*1.00856
+pritiskMax=$(echo "1038" | bc ) #1038 izola-vreme.info (od feb 2011 do avg 2012, MSL) ##*1.00856
 pritiskMax=$(printf %.0f "$pritiskMax")
 pritiskMin=$(echo "985" | bc ) #985 izola-vreme.info (od feb 2011 do avg 2012, MSL) ##*1.00856
 pritiskMin=$(printf %.0f "$pritiskMin")
@@ -200,7 +200,7 @@ T=${T%%,*}
 
 Fmts () {
 	Tmts=$(echo "$1 + $1*s(($mesec+2)/1.91)" | bc -l)
-	result=$(expr 0 \> $Tmts)
+	result=$(echo 0.'>'$Tmts | bc -l)
 	if [ $result -eq "1" ]; then
 		Tmts=0.
 	fi
@@ -209,7 +209,7 @@ Fmts () {
 
 Fmrs () {
 	Tmrs=$(echo "$1*(0.55+s($mesec+4))*0.6" | bc -l)
-	result=$(expr 0 \> $Tmrs)
+	result=$(echo 0.'>'$Tmrs | bc -l)
 	if [ $result -eq "1" ]; then
 		Tmrs=0.
 	fi
@@ -220,15 +220,15 @@ Fmrs () {
 }
 
 Frain () {
-	result=$(expr $3 \> $1)
-	if [ $result -eq "1" ]; then
+	result=$(echo $3'>'$1 | bc -l)
+	if [ $result -eq 1 ]; then
 		Prain=$(echo "5*(($1-$3)/(1.4*$2))^3+6.76*(($1-$3)/(1.4*$2))^2+3.19*(($1-$3)/(1.4*$2))+0.5" | bc -l)
 		if [ ${Prain:0:1} == "-" ]; then
 			Prain=0.
 		fi
 	else
 		Prain=$(echo "5*(($1-$3)/(1.4*$2))^3-6.76*(($1-$3)/(1.4*$2))^2+3.19*(($1-$3)/(1.4*$2))+0.5" | bc -l)
-		result=$(expr $Prain \> 1)
+		result=$(echo $Prain'>'1. | bc -l)
 		if [ $result -eq "1" ]; then
 			Prain=1.
 		fi
@@ -241,14 +241,14 @@ Tmrs=$(Fmrs 13)
 
 Prain=$(Frain $T $Tmrs $Tmts)
 
-result=$(expr $(expr 0.5 \< $Prain) + $(expr $Prain \<= 0.99) == 2)
+result=$(echo $(echo 0.5'<'$Prain | bc -l) + $(echo $Prain'<='0.99 | bc -l)'=='2 | bc -l)
 if [ $result -eq "1" ]; then
 	if [ $izbira -ge 3 ]; then
 		nap="$nap"" Možnost sneženja."
 	fi
 fi
 
-result=$(expr $Prain \<= 0.5)
+result=$(echo $Prain'<='0.5 | bc -l)
 if [ $result -eq "1" ]; then
 	nap=$(echo $nap | sed 's/plohe/snežne plohe/g')
 	nap=$(echo $nap | sed 's/Plohe/Snežne plohe/g')
