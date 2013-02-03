@@ -39,12 +39,12 @@ for i in {0..3}; do
 
 comment=""
 mean=$(echo "scale=2; $total/3" | bc -l)
-if [ ${mean%.*} -gt 100 ]; then
+#if [ ${mean%.*} -gt 100 ]; then          FIX ZA NEDELJUOČ HH10D
 	comment="# izola-vreme.info"
 	m=$(curl --silent http://izola-vreme.info/veter2/veter2.php|grep "%</td>")
 	m=${m%% *}
 	mean=${m#* }
-fi
+#fi						//FIX ZA NEDELJUOČ HH10D
 # dec=${mean#*.}
 # if [ $dec -le 25 ]; then
 # 	mean=${mean%.*}
@@ -59,12 +59,12 @@ hour=$(date '+%H')
 if [ $hour -eq 0 -o $hour -eq 1 ]; then
 	datumzdej=$(date '+%Y/%m/%d %H')
 	if [ "$datumzdej" == "$datumzad" ]; then
-		if [ "$pred" == "$zad" -a "$zad" == "$RH" ]; then
+		if [ "$pred" == "$zad" -a "$zad" == "$RH""$comment" ]; then
 			sed -i "$l""d" "$file"
 		fi
 	fi
 else
-	if [ "$pred" == "$zad" -a "$zad" == "$RH" ]; then
+	if [ "$pred" == "$zad" -a "$zad" == "$RH""$comment" ]; then
 		sed -i "$l""d" "$file"
 	fi
 fi
