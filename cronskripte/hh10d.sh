@@ -41,7 +41,7 @@ comment=""
 mean=$(echo "scale=2; $total/3" | bc -l)
 #if [ ${mean%.*} -gt 100 ]; then          FIX ZA NEDELJUOČ HH10D
 	comment="# izola-vreme.info"
-	m=$(curl --silent http://izola-vreme.info/veter2/veter2.php|grep "%</td>")
+	m=$(curl -A "Mozilla/4.0" --silent http://izola-vreme.info/veter2/veter2.php|grep "%</td>")
 	m=${m%% *}
 	mean=${m#* }
 #fi						//FIX ZA NEDELJUOČ HH10D
