@@ -14,9 +14,20 @@ mycsvlist = list(mycsv)
 
 val = []
 for row in mycsvlist[1988:]:
-	if len(row) == 3:
+	n = 0
+	if len(row) == 4:
 		if row[2]:
-			val.append([row[0],float(row[2])])
+			n = 1
+			t = float(row[2])
+		if row[1]:
+			n = n+1
+			t = t+float(row[1])
+		if row[3]:
+			n = n+1
+			t = t+float(row[3])
+		mt = t/n
+		if n > 0:
+			val.append([row[0],mt])
 mycsvlist = val
 
 # abs

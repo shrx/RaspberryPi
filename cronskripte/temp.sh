@@ -69,25 +69,48 @@ temp2=$(echo "scale=4; 0.93662+0.984339*$temp2" | bc)
 
 temp2=$(printf "%.1f\n" "$temp2")
 
+# -------- dht22 --------
+
+fileNapRH="/home/pi/stran/data/napoved-h.csv"
+
+dht=$(sudo /usr/local/bin/loldht)
+
+rh=${dht##*Humidity = }
+rh=${rh%% *}
+RH=$(printf "%.0f\n" "$rh")
+
+temp3=${dht##*Temperature = }
+temp3=${temp3%% *}
+temp3=$(printf "%.1f\n" "$temp3")
+
+echo "$RH" > ~/stran/data/zdej-h.csv
+echo "$RH" >> "$fileNap"
+
+x=$(wc -l "$fileNapRH")
+tock=$(echo ${x%% *})
+if [ $tock -gt 14 ]; then
+	sed -i "1d" "$fileNapRH"
+fi
+
 # -------- skupaj --------
 
 hour=$(date '+%H')
 if [ $hour -eq 0 -o $hour -eq 1 ]; then
 	datumzdej=$(date '+%Y/%m/%d %H')
 	if [ "$datumzdej" == "$datumzad" ]; then
-		if [ "$pred" == "$zad" -a "$zad" == "$temp2,$temp" ]; then
+		if [ "$pred" == "$zad" -a "$zad" == "$temp2,$temp,$temp3" ]; then
 			sed -i "$l""d" "$file"
 		fi
 	fi
 else
-	if [ "$pred" == "$zad" -a "$zad" == "$temp2,$temp" ]; then
+	if [ "$pred" == "$zad" -a "$zad" == "$temp2,$temp,$temp3" ]; then
 		sed -i "$l""d" "$file"
 	fi
 fi
 
-echo "$datum,$temp2,$temp" >> "$file"
+echo "$datum,$temp2,$temp,$temp3" >> "$file"
 
-echo "$temp2,$temp" >> "$fileNap"
+echo "$temp2,$temp,$temp3" >> "$fileNap"
 
 x=$(wc -l "$fileNap")
 tock=$(echo ${x%% *})

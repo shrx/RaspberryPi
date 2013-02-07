@@ -2,7 +2,7 @@
 LC_NUMERIC=C
 
 file="/home/pi/stran/data/dht22.csv"
-fileNap="/home/pi/stran/data/napoved-h.csv"
+# fileNap="/home/pi/stran/data/napoved-h.csv"
 
 a=$(wc -l "$file")
 l=$(echo ${a%% *})
@@ -15,11 +15,12 @@ z=$(sed -n "$l""p" "$file")
 zad=$(echo ${z#*,})
 datumzad=$(echo ${z%%:*})
 
-dht=$(sudo /usr/local/bin/loldht)
+# dht=$(sudo /usr/local/bin/loldht)
+RH=$(<stran/data/zdej-h.csv)
 datum=$(date '+%Y/%m/%d %H:%M:%S')
-dht=${dht##*Humidity = }
-mean=${dht%% *}
-RH=$(printf "%.0f\n" "$mean")
+# dht=${dht##*Humidity = }
+# mean=${dht%% *}
+# RH=$(printf "%.0f\n" "$mean")
 
 hour=$(date '+%H')
 if [ $hour -eq 0 -o $hour -eq 1 ]; then
@@ -37,13 +38,13 @@ fi
 
 echo "$datum,$RH$comment" >> "$file"
 
-echo "$RH" >> "$fileNap"
-
-x=$(wc -l "$fileNap")
-tock=$(echo ${x%% *})
-if [ $tock -gt 14 ]; then
-	sed -i "1d" "$fileNap"
-fi
+# echo "$RH" >> "$fileNap"
+#
+# x=$(wc -l "$fileNap")
+# tock=$(echo ${x%% *})
+# if [ $tock -gt 14 ]; then
+# 	sed -i "1d" "$fileNap"
+# fi
 
 # ---------- Dew Point ----------
 
