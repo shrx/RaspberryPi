@@ -17,7 +17,7 @@ for row in mycsvlist[1988:]:
 	n = 0
 	if len(row) == 4:
 		if row[2]:
-			n = 1
+			n = n+1
 			t = float(row[2])
 		if row[1]:
 			n = n+1
@@ -25,8 +25,8 @@ for row in mycsvlist[1988:]:
 		if row[3]:
 			n = n+1
 			t = t+float(row[3])
-		mt = t/n
 		if n > 0:
+			mt = t/n
 			val.append([row[0],mt])
 mycsvlist = val
 

@@ -27,7 +27,10 @@ f.close()
 
 val = []
 for row in mycsvlist:
-	val.append(float(row[-1]))
+	if len(row) == 3:
+		val.append(mean([float(row[0]),float(row[1]),float(row[2])]))
+	else:
+		val.append(float(row[0]))
 mycsvlist = val
 
 zadnja = mycsvlist[-1]

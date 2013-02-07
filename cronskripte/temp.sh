@@ -84,7 +84,7 @@ temp3=${temp3%% *}
 temp3=$(printf "%.1f\n" "$temp3")
 
 echo "$RH" > ~/stran/data/zdej-h.csv
-echo "$RH" >> "$fileNap"
+echo "$RH" >> "$fileNapRH"
 
 x=$(wc -l "$fileNapRH")
 tock=$(echo ${x%% *})
