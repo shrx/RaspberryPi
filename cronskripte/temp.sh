@@ -65,7 +65,7 @@ fi
 # kalibracija 10. 12. 2012 01:21
 #temp2=$(echo "scale=4; -0.0905923+1.00713*$temp2" | bc)
 # skupaj:
-temp2=$(echo "scale=4; 0.93662+0.984339*$temp2" | bc)
+#temp2=$(echo "scale=4; 0.93662+0.984339*$temp2" | bc)   konec kalib. 7. feb 2013 20:42
 
 temp2=$(printf "%.1f\n" "$temp2")
 
