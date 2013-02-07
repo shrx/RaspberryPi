@@ -3,7 +3,8 @@
 ~/cronskripte/load.sh;
 ~/cronskripte/temp.sh;
 ~/cronskripte/bmp085-p.sh;
-~/cronskripte/hh10d.sh;
+#~/cronskripte/hh10d.sh;
+~/cronskripte/dht22.sh;
 
 ~/cronskripte/napoved.py ~/stran/data/napoved-t.csv > ~/stran/data/zdej-t.csv;
 ~/cronskripte/napoved.py ~/stran/data/napoved-p.csv > ~/stran/data/zdej-p.csv;

@@ -36,8 +36,10 @@ def meanByHour(x):
 	return [ x[0][0], x[0][1], mean(column(x,-1)) ]
 
 def result(x6):
-	max = sorted(x6,key=operator.itemgetter(1))[-1]
-	min = sorted(x6,key=operator.itemgetter(1))[0]
+	max = sorted(x6,key=operator.itemgetter(1))
+	max = [list(group) for key,group in itertools.groupby(max,operator.itemgetter(1))][-1][0]
+	min = sorted(x6,key=operator.itemgetter(1))
+	min = [list(group) for key,group in itertools.groupby(min,operator.itemgetter(1))][0][0]
 	print(max[0],"%.2f" % max[1],sep=",")
 	print(min[0],"%.2f" % min[1],sep=",")
 

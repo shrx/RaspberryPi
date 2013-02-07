@@ -21,8 +21,10 @@ mycsvlist = val
 
 # abs
 
-max = sorted(mycsvlist,key=operator.itemgetter(1))[-1]
-min = sorted(mycsvlist,key=operator.itemgetter(1))[0]
+max = sorted(mycsvlist,key=operator.itemgetter(1))
+max = [list(group) for key,group in itertools.groupby(max,operator.itemgetter(1))][-1][0]
+min = sorted(mycsvlist,key=operator.itemgetter(1))
+min = [list(group) for key,group in itertools.groupby(min,operator.itemgetter(1))][0][0]
 
 x1 = []
 for row in mycsvlist:
@@ -33,7 +35,8 @@ x3 = []
 for row in x2:
 	sort = sorted(row,key=operator.itemgetter(-1))
 	x3.append([ row[0][0], sort[-1][1]-sort[0][1] ])
-x4 = sorted(x3,key=operator.itemgetter(-1))[-1]
+x4 = sorted(x3,key=operator.itemgetter(-1))
+x4 = [list(group) for key,group in itertools.groupby(x4,operator.itemgetter(1))][-1][0]
 
 print("abs")
 print(max[0],"%.2f" % max[1],sep=",")
@@ -81,7 +84,6 @@ for row in x4:
 		max.append(maxByDay)
 max1 = zip(max,map(max.count,max))
 max2 = sorted(max1,key=operator.itemgetter(-1))[-1][0]
-
 
 print("ure")
 print(max2)
