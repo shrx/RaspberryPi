@@ -48,8 +48,8 @@ dayMax=[statCsvList[8][0],float(statCsvList[8][1])]
 dayMin=[statCsvList[9][0],float(statCsvList[9][1])]
 monthMax=[statCsvList[11][0],float(statCsvList[11][1])]
 monthMin=[statCsvList[12][0],float(statCsvList[12][1])]
-#yearMax=[statCsvList[14][0],float(statCsvList[14][1])]
-#yearMin=[statCsvList[15][0],float(statCsvList[15][1])]
+yearMax=[statCsvList[14][0],float(statCsvList[14][1])]
+yearMin=[statCsvList[15][0],float(statCsvList[15][1])]
 
 # print(absMax)
 # print(absMin)
@@ -70,6 +70,7 @@ x1 = []
 for row in mycsvlist[-601:]:		# cel prejšnji dan
 	if (now.day - int(row[0].split(" ",1)[0].split("/")[-1])) % daysInMonth == 1:
 		x1.append([ row[0].split(" ",1)[0], row[1] ])
+
 x2 = [list(group) for key,group in itertools.groupby(x1,operator.itemgetter(0))]
 
 x3 = []
@@ -183,7 +184,7 @@ result(x6,dayMax,dayMin)
 x1 = []
 i = 0
 for row in mycsvlist[-18150:]:		# (31*2) * 24 * 12 + 24 * 12 = 18150 meritev (cel prejšnji mesec + prestopna ura)
-	if (now.month - int(row[0].split("/",2)[1])) % 12 == 1:
+	if (now.month - int(row[0].split("/",2)[1])) % 12 <= 1:
 		j = 1
 		part = row[0].split(" ",1)[1].split(":",2)
 
@@ -222,24 +223,25 @@ result(x6,monthMax,monthMin)
 x1 = []
 i = 0
 for row in mycsvlist:
-	j = 1
-	part = row[0].split(" ",1)[1].split(":",2)
+	if now.year - int(row[0].split("/",1)[0]) == 0:
+		j = 1
+		part = row[0].split(" ",1)[1].split(":",2)
 
-	if i != 0:
-		lastHour = x1[i-1][1]
-		hour = int(part[0])
-		if hour == 0 and lastHour == 23:
-			hour = 24
+		if i != 0:
+			lastHour = x1[i-1][1]
+			hour = int(part[0])
+			if hour == 0 and lastHour == 23:
+				hour = 24
 
-		while lastHour < hour-1:
-			lastHour = lastHour+1
-			x1.append([ x1[i-1][0], lastHour, 0, x1[i-1][-1] ])
-			j = j+1
+			while lastHour < hour-1:
+				lastHour = lastHour+1
+				x1.append([ x1[i-1][0], lastHour, 0, x1[i-1][-1] ])
+				j = j+1
 
-	x1.append([ int(row[0].split("/",1)[0]), int(part[0]), int(part[1]), row[1] ])
-	i = i+j
+		x1.append([ int(row[0].split("/",1)[0]), int(part[0]), int(part[1]), row[1] ])
+		i = i+j
 
-x2 = [list(group) for key,group in itertools.groupby(x1,operator.itemgetter(-3))][1:-1]
+x2 = [list(group) for key,group in itertools.groupby(x1,operator.itemgetter(-3))]
 x3 = []
 for row in x2:
 	x3.append(meanByHour(row))
@@ -254,4 +256,4 @@ for row in x5:
 #
 # csvExport("/home/pi/stran/data/"+str(sys.argv[1]).split("/")[-1].split(".")[0]+"-y.csv",x7)
 print("leta")
-resultAbs(x6)
+result(x6,yearMax,yearMin)
