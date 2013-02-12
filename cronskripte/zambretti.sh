@@ -11,7 +11,7 @@
 # trend=$4
 
 kje=1
-pritiskMax=$(echo "1038" | bc ) #1038 izola-vreme.info (od feb 2011 do avg 2012, MSL) ##*1.00856
+pritiskMax=$(echo "1036" | bc ) #1038 izola-vreme.info (od feb 2011 do avg 2012, MSL) ##*1.00856
 pritiskMax=$(printf %.0f "$pritiskMax")
 pritiskMin=$(echo "985" | bc ) #985 izola-vreme.info (od feb 2011 do avg 2012, MSL) ##*1.00856
 pritiskMin=$(printf %.0f "$pritiskMin")
@@ -241,7 +241,7 @@ Tmrs=$(Fmrs 13)
 
 Prain=$(Frain $T $Tmrs $Tmts)
 
-result=$(echo $(echo 0.5'<'$Prain | bc -l) + $(echo $Prain'<='0.99 | bc -l)'=='2 | bc -l)
+result=$(echo $(echo 0.5'<'$Prain | bc -l) + $(echo $Prain'<='0.75 | bc -l)'=='2 | bc -l)
 if [ $result -eq "1" ]; then
 	if [ $izbira -ge 3 ]; then
 		nap="$nap"" Možnost sneženja."
