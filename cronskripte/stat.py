@@ -28,7 +28,7 @@ if str(sys.argv[1]).split("/")[-1] == "bmp085-p.csv":
 else:
 	statFile="stat-h.csv"
 
-f = open("/home/pi/stran/data/"+statFile, 'rt')
+f = open("/home/pi/stran/data/"+statFile, 'r')
 statCsv = csv.reader(f)
 statCsvList = list(statCsv)
 f.close()
