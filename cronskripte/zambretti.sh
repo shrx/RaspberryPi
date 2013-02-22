@@ -189,6 +189,7 @@ veter=${v%%<*}
 
 nap=$(napoved $pritisk $mesec $veter $trend $kje $pritiskMax $pritiskMin)
 izbira=${nap##*,}
+izb=${nap#*,}
 nap=${nap%,*}
 datum=$(date +"%e. %m. %Y, %H:%M")
 
@@ -259,6 +260,6 @@ fi
 
 # ------ /sneg ------
 
-echo "$datum,$nap"
+echo "$datum,$nap,$izb"
 
 exit

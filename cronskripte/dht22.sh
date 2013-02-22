@@ -48,7 +48,7 @@ echo "$datum,$RH$comment" >> "$file"
 
 # ---------- Dew Point ----------
 
-filet="/home/pi/stran/data/napoved-t.csv"
+filet="/home/pi/stran/data/zdej-t.csv"
 fileDP="/home/pi/stran/data/DP.csv"
 fileDPNap="/home/pi/stran/data/napoved-dp.csv"
 
@@ -56,8 +56,8 @@ b=18.678
 c=257.14
 d=234.5
 
-T=$(tail -1 "$filet")
-T=${T##*,}
+T=$(head -1 "$filet")
+T=${T%%,*}
 
 gama=$(echo "l( ($RH/100) * e( ($b-($T/$d))*($T/($c+($T))) ) )" | bc -l)
 DP=$(echo "scale=3; ($c*$gama)/($b-($gama))" | bc)
@@ -117,7 +117,7 @@ fi
 fileHI="/home/pi/stran/data/HI.csv"
 fileHINap="/home/pi/stran/data/napoved-hi.csv"
 
-T=$(echo "$T*9/5 + 32" | bc -l)
+T=$(echo "$T*9./5. + 32" | bc -l)
 
 if [ ${T%%.*} -ge 80 -a $RH -ge 40 ]; then
 
