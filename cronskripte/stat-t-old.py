@@ -137,7 +137,7 @@ for row in x6:
 
 csvExport("/home/pi/stran/data/"+str(sys.argv[1]).split("/")[-1].split(".")[0]+"-d.csv",x7)
 print("dnevi")
-result(x6)
+resultAbs(x6)
 
 # meseci
 
@@ -176,7 +176,7 @@ for row in x6:
 
 csvExport("/home/pi/stran/data/"+str(sys.argv[1]).split("/")[-1].split(".")[0]+"-m.csv",x7)
 print("meseci")
-result(x6)
+resultAbs(x6)
 
 # leta
 
@@ -215,6 +215,6 @@ for row in x6:
 
 csvExport("/home/pi/stran/data/"+str(sys.argv[1]).split("/")[-1].split(".")[0]+"-y.csv",x7)
 print("leta")
-result(x6)
+resultAbs(x6)
 
 f.close()

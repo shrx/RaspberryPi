@@ -10,7 +10,8 @@ import datetime
 from calendar import monthrange
 
 now = datetime.datetime.now()
-daysInMonth=monthrange(now.year, now.month)[1]
+yesterday = now - datetime.timedelta(days=1)
+daysInMonth=monthrange(yesterday.year, yesterday.month)[1]
 
 f = open(sys.argv[1], 'rt')
 mycsv = csv.reader(f)
@@ -184,7 +185,7 @@ result(x6,dayMax,dayMin)
 x1 = []
 i = 0
 for row in mycsvlist[-18150:]:		# (31*2) * 24 * 12 + 24 * 12 = 18150 meritev (cel prejšnji mesec + prestopna ura)
-	if (now.month - int(row[0].split("/",2)[1])) % 12 <= 1:
+	if (now.month - int(row[0].split("/",2)[1])) % 12 == 1:
 		j = 1
 		part = row[0].split(" ",1)[1].split(":",2)
 
@@ -210,7 +211,7 @@ x5 = [list(group) for key,group in itertools.groupby(x4,operator.itemgetter(0))]
 x6 = []
 for row in x5:
 	x6.append([row[0][0],mean(column(row,-1))])
-x7= []
+#x7= []
 # for row in x6:
 # 	x7.append([row[0],"%.2f" % row[1]])
 #
