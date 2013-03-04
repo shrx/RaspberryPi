@@ -118,9 +118,8 @@ for row in mycsvlist:
 	i = i+j
 
 x2 = [list(group) for key,group in itertools.groupby(x1,operator.itemgetter(-3))][1:-1]
-x3 = []
-for row in x2:
-	x3.append(meanByHour(row)) # meanByHour
+x2 = [list(group) for key,group in itertools.groupby(x1,operator.itemgetter(-3))][1:-1]
+x3 = meanByHour(x2) # meanByHour
 x4 = [list(group) for key,group in itertools.groupby(x3,operator.itemgetter(0))] # splitby[hour]
 
 min = []
@@ -164,9 +163,8 @@ for row in mycsvlist[-601:]:
 		x1.append([ row[0].split(" ",1)[0], int(part[0]), int(part[1]), row[1] ])
 		i = i+j
 x2 = [list(group) for key,group in itertools.groupby(x1,operator.itemgetter(-3))]
-x3 = []
-for row in x2:
-	x3.append(meanByHour(row))
+x2 = [list(group) for key,group in itertools.groupby(x1,operator.itemgetter(-3))][1:-1]
+x3 = meanByHour(x2)
 x4 = sorted(x3,key=operator.itemgetter(0))
 x5 = [list(group) for key,group in itertools.groupby(x4,operator.itemgetter(0))]
 x6 = []
@@ -203,9 +201,8 @@ for row in mycsvlist[-18150:]:		# (31*2) * 24 * 12 + 24 * 12 = 18150 meritev (ce
 		x1.append([ int(row[0].split("/",2)[1]), int(part[0]), int(part[1]), row[1] ])
 		i = i+j
 x2 = [list(group) for key,group in itertools.groupby(x1,operator.itemgetter(-3))]
-x3 = []
-for row in x2:
-	x3.append(meanByHour(row))
+x2 = [list(group) for key,group in itertools.groupby(x1,operator.itemgetter(-3))][1:-1]
+x3 = meanByHour(x2)
 x4 = sorted(x3,key=operator.itemgetter(0))
 x5 = [list(group) for key,group in itertools.groupby(x4,operator.itemgetter(0))]
 x6 = []
@@ -243,9 +240,8 @@ for row in mycsvlist:
 		i = i+j
 
 x2 = [list(group) for key,group in itertools.groupby(x1,operator.itemgetter(-3))]
-x3 = []
-for row in x2:
-	x3.append(meanByHour(row))
+x2 = [list(group) for key,group in itertools.groupby(x1,operator.itemgetter(-3))][1:-1]
+x3 = meanByHour(x2)
 x4 = sorted(x3,key=operator.itemgetter(0))
 x5 = [list(group) for key,group in itertools.groupby(x4,operator.itemgetter(0))]
 x6 = []

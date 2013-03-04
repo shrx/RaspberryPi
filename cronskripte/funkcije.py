@@ -16,24 +16,36 @@ def mean(numberList):
 def flatten(x):
 	return [item for sublist in x for item in sublist]
 
-def meanByHour(x):
-	if x[0][-2] != 0:
-		x.insert(0, flatten([ x[0][:-2], [0], [x[0][-1]] ]))
-	i = 1
-	while (i < len(x)-1):
-		if x[i][-2] != i*5:
-			x.insert(i, flatten([ x[i-1][:-2], [i*5], [x[i-1][-1]] ]))
-		i = i+1
-		if 	i == 11:
-			break
-	last = x[-1][-2]
-	if last != 55:
-		table = []
-		while (last < 55):
-			last = last+5
-			table.append(flatten([ x[-1][:-2], [last], [x[-1][-1]] ]))
-		x = x + table
-	return [ x[0][0], x[0][1], mean(column(x,-1)) ]
+def meanByHour(list):
+	y = list
+	h1 = y[1][0][-3]
+	hi = 1
+	while hi < len(y):
+		if (y[hi][0][-3] - h1) % 24 != 1:
+			y.insert(hi, [[ y[hi-1][-1][0], (y[hi-1][-1][-3] + 1) % 24, 0, y[hi-1][-1][-1] ]] )
+		h1 = y[hi][0][-3]
+		hi = hi+1
+
+	mblist = []
+	for x in y:
+		if x[0][-2] != 0:
+			x.insert(0, flatten([ x[0][:-2], [0], [x[0][-1]] ]))
+		i = 1
+		while (i < len(x)-1):
+			if x[i][-2] != i*5:
+				x.insert(i, flatten([ x[i-1][:-2], [i*5], [x[i-1][-1]] ]))
+			i = i+1
+			if 	i == 11:
+				break
+		last = x[-1][-2]
+		if last != 55:
+			table = []
+			while (last < 55):
+				last = last+5
+				table.append(flatten([ x[-1][:-2], [last], [x[-1][-1]] ]))
+			x = x + table
+		mblist.append([ x[0][0], x[0][1], mean(column(x,-1)) ])
+	return mblist
 
 def result(x6,absMax,absMin):
 	max = sorted(x6,key=operator.itemgetter(1))
