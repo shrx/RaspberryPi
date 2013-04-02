@@ -180,77 +180,116 @@ result(x6,dayMax,dayMin)
 
 # meseci
 
-x1 = []
-i = 0
-for row in mycsvlist[-18150:]:		# (31*2) * 24 * 12 + 24 * 12 = 18150 meritev (cel prejšnji mesec + prestopna ura)
-	if (now.month - int(row[0].split("/",2)[1])) % 12 == 1:
-		j = 1
-		part = row[0].split(" ",1)[1].split(":",2)
-
-		if i != 0:
-			lastHour = x1[i-1][1]
-			hour = int(part[0])
-			if hour == 0 and lastHour == 23:
-				hour = 24
-
-			while lastHour < hour-1:
-				lastHour = lastHour+1
-				x1.append([ x1[i-1][0], lastHour, 0, x1[i-1][-1] ])
-				j = j+1
-
-		x1.append([ int(row[0].split("/",2)[1]), int(part[0]), int(part[1]), row[1] ])
-		i = i+j
-x2 = [list(group) for key,group in itertools.groupby(x1,operator.itemgetter(-3))]
-x2 = [list(group) for key,group in itertools.groupby(x1,operator.itemgetter(-3))][1:-1]
-x3 = meanByHour(x2)
-x4 = sorted(x3,key=operator.itemgetter(0))
-x5 = [list(group) for key,group in itertools.groupby(x4,operator.itemgetter(0))]
-x6 = []
-for row in x5:
-	x6.append([row[0][0],mean(column(row,-1))])
-#x7= []
-# for row in x6:
-# 	x7.append([row[0],"%.2f" % row[1]])
-#
-# csvExport("/home/pi/stran/data/"+str(sys.argv[1]).split("/")[-1].split(".")[0]+"-m.csv",x7)
 print("meseci")
-result(x6,monthMax,monthMin)
+if now.day == 1:
+	x1 = []
+	i = 0
+	for row in mycsvlist[-((31+yesterday.day+1)*24*12 + 12):]:		# (31*2) * 24 * 12 + 24 * 12 = 18150 meritev (cel prejšnji mesec + prestopna ura)
+		if (now.month - int(row[0].split("/",2)[1])) % 12 == 1:
+			j = 1
+			part = row[0].split(" ",1)[1].split(":",2)
+
+			if i != 0:
+				lastHour = x1[i-1][1]
+				hour = int(part[0])
+				if hour == 0 and lastHour == 23:
+					hour = 24
+
+				while lastHour < hour-1:
+					lastHour = lastHour+1
+					x1.append([ x1[i-1][0], lastHour, 0, x1[i-1][-1] ])
+					j = j+1
+
+			x1.append([ int(row[0].split("/",2)[1]), int(part[0]), int(part[1]), row[1] ])
+			i = i+j
+	x2 = [list(group) for key,group in itertools.groupby(x1,operator.itemgetter(-3))]
+	x2 = [list(group) for key,group in itertools.groupby(x1,operator.itemgetter(-3))][1:-1]
+	x3 = meanByHour(x2)
+	x4 = sorted(x3,key=operator.itemgetter(0))
+	x5 = [list(group) for key,group in itertools.groupby(x4,operator.itemgetter(0))]
+	x6 = []
+	for row in x5:
+		x6.append([row[0][0],mean(column(row,-1))])
+	#x7= []
+	# for row in x6:
+	# 	x7.append([row[0],"%.2f" % row[1]])
+	#
+	# csvExport("/home/pi/stran/data/"+str(sys.argv[1]).split("/")[-1].split(".")[0]+"-m.csv",x7)
+	result(x6,monthMax,monthMin)
+else:
+	print(monthMax[0],monthMax[1],sep=",")
+	print(monthMin[0],monthMin[1],sep=",")
 
 # leta
 
-x1 = []
-i = 0
-for row in mycsvlist:
-	if now.year - int(row[0].split("/",1)[0]) == 0:
-		j = 1
-		part = row[0].split(" ",1)[1].split(":",2)
-
-		if i != 0:
-			lastHour = x1[i-1][1]
-			hour = int(part[0])
-			if hour == 0 and lastHour == 23:
-				hour = 24
-
-			while lastHour < hour-1:
-				lastHour = lastHour+1
-				x1.append([ x1[i-1][0], lastHour, 0, x1[i-1][-1] ])
-				j = j+1
-
-		x1.append([ int(row[0].split("/",1)[0]), int(part[0]), int(part[1]), row[1] ])
-		i = i+j
-
-x2 = [list(group) for key,group in itertools.groupby(x1,operator.itemgetter(-3))]
-x2 = [list(group) for key,group in itertools.groupby(x1,operator.itemgetter(-3))][1:-1]
-x3 = meanByHour(x2)
-x4 = sorted(x3,key=operator.itemgetter(0))
-x5 = [list(group) for key,group in itertools.groupby(x4,operator.itemgetter(0))]
-x6 = []
-for row in x5:
-	x6.append([row[0][0],mean(column(row,-1))])
-# x7= []
-# for row in x6:
-# 	x7.append([row[0],"%.2f" % row[1]])
-#
-# csvExport("/home/pi/stran/data/"+str(sys.argv[1]).split("/")[-1].split(".")[0]+"-y.csv",x7)
 print("leta")
-result(x6,yearMax,yearMin)
+if now.month == 1 and now.day == 1:
+	x1 = []
+	i = 0
+	for row in mycsvlist[-((31*12+31*(now.month-1)+yesterday.day+1)*24*12 + 12*2):]:
+		if now.year - int(row[0].split("/",1)[0]) == 1:
+			j = 1
+			part = row[0].split(" ",1)[1].split(":",2)
+
+			if i != 0:
+				lastHour = x1[i-1][1]
+				hour = int(part[0])
+				if hour == 0 and lastHour == 23:
+					hour = 24
+
+				while lastHour < hour-1:
+					lastHour = lastHour+1
+					x1.append([ x1[i-1][0], lastHour, 0, x1[i-1][-1] ])
+					j = j+1
+
+			x1.append([ int(row[0].split("/",1)[0]), int(part[0]), int(part[1]), row[1] ])
+			i = i+j
+
+	x2 = [list(group) for key,group in itertools.groupby(x1,operator.itemgetter(-3))]
+	x2 = [list(group) for key,group in itertools.groupby(x1,operator.itemgetter(-3))][1:-1]
+	x3 = meanByHour(x2)
+	x4 = sorted(x3,key=operator.itemgetter(0))
+	x5 = [list(group) for key,group in itertools.groupby(x4,operator.itemgetter(0))]
+	x6 = []
+	for row in x5:
+		x6.append([row[0][0],mean(column(row,-1))])
+	# x7= []
+	# for row in x6:
+	# 	x7.append([row[0],"%.2f" % row[1]])
+	#
+	# csvExport("/home/pi/stran/data/"+str(sys.argv[1]).split("/")[-1].split(".")[0]+"-y.csv",x7)
+	result(x6,yearMax,yearMin)
+else if now.day == 1:
+	x1 = []
+	i = 0
+	for row in mycsvlist[-((31*(now.month-1)+yesterday.day+1)*24*12 + 12*2):]:
+		if now.year - int(row[0].split("/",1)[0]) == 0:
+			j = 1
+			part = row[0].split(" ",1)[1].split(":",2)
+
+			if i != 0:
+				lastHour = x1[i-1][1]
+				hour = int(part[0])
+				if hour == 0 and lastHour == 23:
+					hour = 24
+
+				while lastHour < hour-1:
+					lastHour = lastHour+1
+					x1.append([ x1[i-1][0], lastHour, 0, x1[i-1][-1] ])
+					j = j+1
+
+			x1.append([ int(row[0].split("/",1)[0]), int(part[0]), int(part[1]), row[1] ])
+			i = i+j
+
+	x2 = [list(group) for key,group in itertools.groupby(x1,operator.itemgetter(-3))]
+	x2 = [list(group) for key,group in itertools.groupby(x1,operator.itemgetter(-3))][1:-1]
+	x3 = meanByHour(x2)
+	x4 = sorted(x3,key=operator.itemgetter(0))
+	x5 = [list(group) for key,group in itertools.groupby(x4,operator.itemgetter(0))]
+	x6 = []
+	for row in x5:
+		x6.append([row[0][0],mean(column(row,-1))])
+	result(x6,yearMax,yearMin)
+else:
+	print(yearMax[0],yearMax[1],sep=",")
+	print(yearMin[0],yearMin[1],sep=",")

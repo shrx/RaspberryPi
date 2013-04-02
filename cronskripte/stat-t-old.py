@@ -77,9 +77,7 @@ for row in mycsvlist:
 	i = i+j
 
 x2 = [list(group) for key,group in itertools.groupby(x1,operator.itemgetter(-3))][1:-1]
-x3 = []
-for row in x2:
-	x3.append(meanByHour(row)) # meanByHour
+x3 = meanByHour(x2) # meanByHour
 x4 = [list(group) for key,group in itertools.groupby(x3,operator.itemgetter(0))] # splitby[hour]
 
 min = []
@@ -123,9 +121,7 @@ for row in mycsvlist:
 	i = i+j
 
 x2 = [list(group) for key,group in itertools.groupby(x1,operator.itemgetter(-3))][1:-1]
-x3 = []
-for row in x2:
-	x3.append(meanByHour(row))
+x3 = meanByHour(x2)
 x4 = sorted(x3,key=operator.itemgetter(0))
 x5 = [list(group) for key,group in itertools.groupby(x4,operator.itemgetter(0))]
 x6 = []
@@ -162,9 +158,7 @@ for row in mycsvlist:
 	i = i+j
 
 x2 = [list(group) for key,group in itertools.groupby(x1,operator.itemgetter(-3))][1:-1]
-x3 = []
-for row in x2:
-	x3.append(meanByHour(row))
+x3 = meanByHour(x2)
 x4 = sorted(x3,key=operator.itemgetter(0))
 x5 = [list(group) for key,group in itertools.groupby(x4,operator.itemgetter(0))]
 x6 = []
@@ -201,9 +195,7 @@ for row in mycsvlist:
 	i = i+j
 
 x2 = [list(group) for key,group in itertools.groupby(x1,operator.itemgetter(-3))][1:-1]
-x3 = []
-for row in x2:
-	x3.append(meanByHour(row))
+x3 = meanByHour(x2)
 x4 = sorted(x3,key=operator.itemgetter(0))
 x5 = [list(group) for key,group in itertools.groupby(x4,operator.itemgetter(0))]
 x6 = []
