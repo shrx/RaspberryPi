@@ -259,7 +259,7 @@ if now.month == 1 and now.day == 1:
 	#
 	# csvExport("/home/pi/stran/data/"+str(sys.argv[1]).split("/")[-1].split(".")[0]+"-y.csv",x7)
 	result(x6,yearMax,yearMin)
-else if now.day == 1:
+elif now.day == 1:
 	x1 = []
 	i = 0
 	for row in mycsvlist[-((31*(now.month-1)+yesterday.day+1)*24*12 + 12*2):]:
