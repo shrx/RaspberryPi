@@ -56,7 +56,7 @@ def result(x6,absMax,absMin):
 		print(max[0],"%.2f" % max[1],sep=",")
 	else:
 		print(absMax[0],"%.2f" % absMax[1],sep=",")
-	if min[1] < absMin[1] or min[0] == absMin[0]:
+	if min[1] < absMin[1]-0.004 or min[0] == absMin[0]:
 		print(min[0],"%.2f" % min[1],sep=",")
 	else:
 		print(absMin[0],"%.2f" % absMin[1],sep=",")
