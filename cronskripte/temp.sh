@@ -73,7 +73,9 @@ temp2=$(printf "%.1f\n" "$temp2")
 
 fileNapRH="/home/pi/stran/data/napoved-h.csv"
 
-dht=$(sudo /usr/local/bin/loldht)
+#dht=$(sudo /usr/local/bin/loldht)
+#7. 6. 2013 19:45 loldht neha delat:  Lock file is in use, waiting...
+dht=0
 
 rh=${dht##*Humidity = }
 rh=${rh%% *}

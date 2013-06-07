@@ -22,6 +22,7 @@ f.close()
 val = []
 for row in mycsvlist[1988:]:
 	n = 0
+	row[-1] = row[-1].split("#")[0]
 	if len(row) == 4:
 		if row[2]:
 			n = n+1

@@ -119,7 +119,8 @@ fileHINap="/home/pi/stran/data/napoved-hi.csv"
 
 T=$(echo "$T*9./5. + 32" | bc -l)
 
-if [ ${T%%.*} -ge 78 -a $RH -ge 37 ]; then		# ≥26.6667 °C; upoštevanje tolerance ±1 °C, ±3 % RH
+#if [ ${T%%.*} -ge 78 -a $RH -ge 37 ]; then		# ≥26.6667 °C; upoštevanje tolerance ±1 °C, ±3 % RH
+if [ ${T%%.*} -ge 78 ]; then
 
 	c1=16.923
 	c2=0.185212
