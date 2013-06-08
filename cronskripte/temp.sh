@@ -73,9 +73,9 @@ temp2=$(printf "%.1f\n" "$temp2")
 
 fileNapRH="/home/pi/stran/data/napoved-h.csv"
 
-#dht=$(sudo /usr/local/bin/loldht)
+dht=$(sudo timeout 50s /usr/local/bin/loldht)
 #7. 6. 2013 19:45 loldht neha delat:  Lock file is in use, waiting...
-dht=0
+#dht=0
 
 rh=${dht##*Humidity = }
 rh=${rh%% *}
@@ -84,6 +84,9 @@ RH=$(printf "%.0f\n" "$rh")
 temp3=${dht##*Temperature = }
 temp3=${temp3%% *}
 temp3=$(printf "%.1f\n" "$temp3")
+
+#7. 6. 2013 fix
+#temp3=
 
 echo "$RH" > ~/stran/data/zdej-h.csv
 echo "$RH" >> "$fileNapRH"
