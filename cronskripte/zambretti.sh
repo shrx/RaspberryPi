@@ -222,7 +222,9 @@ Fmrs () {
 
 Frain () {
 	result=$(echo $3'>'$1 | bc -l)
-	if [ $result -eq 1 ]; then
+	if [ $2 == 0. ]; then
+		Prain=1.
+	elif [ $result -eq 1 ]; then
 		Prain=$(echo "5*(($1-$3)/(1.4*$2))^3+6.76*(($1-$3)/(1.4*$2))^2+3.19*(($1-$3)/(1.4*$2))+0.5" | bc -l)
 		if [ ${Prain:0:1} == "-" ]; then
 			Prain=0.

@@ -16,6 +16,9 @@ def mean(numberList):
 def flatten(x):
 	return [item for sublist in x for item in sublist]
 
+def floorArb(x,a):
+	return x if x % a == 0 else x - x % a
+
 def meanByHour(list):
 	y = list
 	h1 = y[1][0][-3]
@@ -28,7 +31,7 @@ def meanByHour(list):
 
 	mblist = []
 	for x in y:
-		if x[0][-2] != 0:
+		if floorArb(x[0][-2],5) != 0:
 			x.insert(0, flatten([ x[0][:-2], [0], [x[0][-1]] ]))
 		i = 1
 		while (i < len(x)-1):
