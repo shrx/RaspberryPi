@@ -73,17 +73,36 @@ temp2=$(printf "%.1f\n" "$temp2")
 
 fileNapRH="/home/pi/stran/data/napoved-h.csv"
 
-dht=$(sudo timeout 50s /usr/local/bin/loldht)
-#7. 6. 2013 19:45 loldht neha delat:  Lock file is in use, waiting...
-#dht=0
+temp3=101
+RH=101
+i=0
+while [ ${temp3%%.*} -gt 100 -o ${temp3%%.*} -lt -50 -o $RH -gt 100 -o $RH -lt 0 ] && [ $i -lt 5 ]; do
+	i=$(($i+1))
+	dht=$(sudo timeout 10s /usr/local/bin/loldht 7)	# brez while loopa: timeout 50s
+	#7. 6. 2013 19:45 loldht neha delat:  Lock file is in use, waiting...
+	#dht=0
 
-rh=${dht##*Humidity = }
-rh=${rh%% *}
-RH=$(printf "%.0f\n" "$rh")
+	rhRaw1=${dht##*Humidity = }
+	rhRaw2=${rhRaw1%% *}
+	RH=$(printf "%.0f\n" "$rhRaw2")
+	if [ -z $RH ]; then
+		RH=101
+	fi
 
-temp3=${dht##*Temperature = }
-temp3=${temp3%% *}
-temp3=$(printf "%.1f\n" "$temp3")
+	temp3Raw1=${dht##*Temperature = }
+	temp3Raw2=${temp3Raw1%% *}
+	temp3=$(printf "%.1f\n" "$temp3Raw2")
+	if [ -z $temp3 ]; then
+		temp3=101
+	fi
+done
+
+if [ $RH -gt 100 -o $RH -lt 0 ]; then
+	RH=
+fi
+if [ ${temp3%%.*} -gt 100 -o ${temp3%%.*} -lt -50 ]; then
+	temp3=
+fi
 
 #7. 6. 2013 fix
 #temp3=
