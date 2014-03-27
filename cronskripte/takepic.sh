@@ -14,7 +14,7 @@
 	/usr/local/bin/dropbox_uploader upload $newpic rpislike/$newpic &> /dev/null
 
 	npics=$(ls -1 | wc -l)
-	if [ $npics -gt 40 ]; then
+	if [ $npics -gt 10 ]; then
 		lastpic=$(ls -tc | tail -1)
 		rm $lastpic
 	fi

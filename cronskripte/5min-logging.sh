@@ -6,7 +6,7 @@
 #~/cronskripte/hh10d.sh;
 ~/cronskripte/dht22.sh;
 # rpi2: windspeed, winddir, rainfall
-timeout 45s rsync -avPq -e ssh "pi2@pi2:/home/pi2/stran/data/windspeed.csv /home/pi2/stran/data/winddir.csv /home/pi2/stran/data/rainfall.csv /home/pi2/stran/data/zdej-ws.csv /home/pi2/stran/data/zdej-wd.csv /home/pi2/stran/data/zdej-rf.csv" /home/pi/stran/data/;
+timeout 45s rsync -avPq -e ssh "pi2@pi2:/home/pi2/stran/data/windspeed.csv /home/pi2/stran/data/winddir.csv /home/pi2/stran/data/rainfall.csv /home/pi2/stran/data/zdej-ws.csv /home/pi2/stran/data/zdej-wd.csv /home/pi2/stran/data/zdej-rf.csv /home/pi2/stran/data/dezevnidnevi.csv" /home/pi/stran/data/;
 #ws=$(tail -1 ~/stran/data/windspeed.csv)
 #echo ${ws#*,} > ~/stran/data/zdej-ws.csv;
 ~/cronskripte/windchillStrayantemp.sh;
